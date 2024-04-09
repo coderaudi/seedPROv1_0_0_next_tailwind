@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@lib/config/project": ["src/lib/projectDetails"],
+      "@lib": ["src/lib/index"],
+      "@lib/components": ["src/lib/components"],
+      "@lib/components/custom": ["src/lib/custom"],
+      "@lib/layout": ["src/lib/layout"],
+      "@lib/icons": ["src/lib/icons"],
+      "@lib/utils": ["src/lib/utils"],
+      "@lib/form": ["src/lib/form"],
+      "@lib/messages": ["src/lib/messages"],
+    }
+  }
+}
