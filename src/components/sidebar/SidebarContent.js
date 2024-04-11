@@ -52,9 +52,9 @@ const SidebarContent = ({
             className="flex justify-between items-center"
             onClick={() => handleMainMenuItemClick(menuItem, index)}
           >
-            <div className="flex items-center">
+            <div className="flex">
               {menuItem.icon && <span className="mr-2">{menuItem.icon}</span>}
-              <span className="text-center">{menuItem.text}</span>
+              <span>{menuItem.text}</span>
             </div>
             <span>
               {menuItem.subMenu && (
