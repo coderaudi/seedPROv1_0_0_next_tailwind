@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import { projectDetails } from "@lib/config/project";
 import { CustomButton } from "@lib/components/custom";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+
 export default function APP() {
   const router = useRouter();
 
@@ -18,12 +18,10 @@ export default function APP() {
           <p className="mt-4" />
 
           <CustomButton
-            title={"VIEW DEMO LOGIN"}
+            title={"VIEW SEED PRO DEMO"}
             onClick={() => {
-              console.log("login check ");
-              Cookies.set(projectDetails.clientCookiesKey, "true"); // Example: Setting a cookie named "demo_user" with value "true"
-
-              router.push("/dashboard");
+              // Cookies.set(projectDetails.clientCookiesKey, "true"); // Example: Setting a cookie named "demo_user" with value "true"
+              router.push("/login");
             }}
           />
 

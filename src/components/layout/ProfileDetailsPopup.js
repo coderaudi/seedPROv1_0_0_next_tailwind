@@ -22,8 +22,27 @@ import { ThemeSwitchButton } from "@lib/components";
 import { Divider, Paper } from "@lib";
 import FullScreenAPP from "./FullScreenApp";
 import NotificationPopup from "./NotificationPopup";
+import { useRouter } from "next/navigation";
+import { removeCookie } from "@lib/utils";
 
-// Define your menu list
+
+
+
+const ProfilePicture = ({ src, name, email }) => {
+  const router = useRouter();
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  // Define your menu list
 const menuList = [
   {
     text: "Profile",
@@ -56,21 +75,14 @@ const menuList = [
     text: "Logout",
     icon: <Logout fontSize="small" className="mr-2" />,
     link: "/logout",
+    onClick: () => {
+      router.push('/login')
+      removeCookie();
+      
+    },
   },
 ];
 
-const ProfilePicture = ({ src, name, email }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
 
   return (
     <div className="p-1">
@@ -98,12 +110,12 @@ const ProfilePicture = ({ src, name, email }) => {
             </div>
 
             <div className="w-4/7">
-              <div className="text-lg font-semibold">John Doe</div>
+              <div className="text-lg font-semibold">Sunny Doe</div>
               <div className="text-sm text-gray-500">john.doe@example.com</div>
             </div>
           </div>
           <Divider />
-          <div className="flex items-center  justify-center">
+          <div className="flex items-center justify-center">
             <p />
             <FullScreenAPP /> {/* Include FullScreenAPP component */}
             <p />
@@ -119,7 +131,7 @@ const ProfilePicture = ({ src, name, email }) => {
                 key={index}
                 // component={Link}
                 // to={menuItem.link}
-                onClick={handleClose}
+                onClick={menuItem.onClick || handleClose}
               >
                 {menuItem.icon && menuItem.icon}
                 {menuItem.text}
