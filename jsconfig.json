@@ -9,6 +9,7 @@
       "@lib/layout": ["src/lib/layout"],
       "@lib/icons": ["src/lib/icons"],
       "@lib/utils": ["src/lib/utils"],
+      "@lib/rest": ["src/lib/rest"],
       "@lib/form": ["src/lib/form"],
       "@lib/messages": ["src/lib/messages"],
     }

@@ -5,6 +5,7 @@ import { enqueueSnackbar } from "notistack"; // Assuming correct usage
 import { ACCESS_DENIED } from "@lib/messages";
 import { checkPathIsAllowed } from "src/lib/projectSetup/sidebarMenuList";
 import { CircularProgress } from "@lib";
+import { getCookie } from "@lib/utils";
 
 const userPermissions = ["dashboard", "admin-about"];
 
@@ -14,6 +15,9 @@ const withAuth = (WrappedComponent) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const router = useRouter(); // Added useRouter hook
     const currentPath = usePathname(); // Get current path using useRouter
+
+    const _cookies =   getCookie();
+
 
     useEffect(() => {
       const fetchAuthStatus = async () => {
@@ -49,7 +53,7 @@ const withAuth = (WrappedComponent) => {
       );
     }
 
-    if (!isAuthenticated) {
+    if (!_cookies || !isAuthenticated) {
       // Redirect to login or error page using router.push
       router.push("/help/AccessDenied");
     } else {

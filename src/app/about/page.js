@@ -2,8 +2,7 @@
 import React, { useEffect } from "react";
 import { Box, Paper, Typography } from "@lib";
 import { projectDetails } from "@lib/config/project";
-import { useSnackbar, useLoading } from "@lib/layout";
-import withAuth from "src/components/hoc/withAuth";
+import { useSnackbar, useLoading, useAuth } from "@lib/layout";
 
 const AboutPage = () => {
   return (
@@ -36,4 +35,4 @@ const AboutPage = () => {
   );
 };
 
-export default withAuth(AboutPage);
+export default useAuth(AboutPage);

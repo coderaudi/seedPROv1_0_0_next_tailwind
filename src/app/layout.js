@@ -15,6 +15,7 @@ import { CustomThemeProvider } from "src/components/theme/CustomThemeProvider";
 import { LoadingProvider } from "src/components/loading/LoadingProvider";
 import { checkPathIsAllowed } from "src/lib/projectSetup/sidebarMenuList";
 import { Backdrop, CircularProgress } from "@lib";
+import { getCookie } from "@lib/utils";
 
 const metadata = {
   title: projectDetails?.projectName || "Create Next App",
@@ -29,15 +30,17 @@ export default function RootLayout({ children }) {
   const userPermissions = ["dashboard1", "admin1"];
 
   useEffect(() => {
+
+    const _cookies = getCookie();
     console.log("layout mounted");
+    console.log("layout _cookies", _cookies);
+
+    // if (!_cookies) {
+    //   redirect('/login'); // Redirect to login page if token is not present
+    // }
+    
   }, []);
 
-  // useEffect(() => {
-  //   console.log("layout loding flag updated!!");
-  //   if (!isAuthenticated) {
-  //     setSecurityChecking(!loading && isAuthenticated);
-  //   }
-  // }, [isAuthenticated, loading]);
 
   return (
     <html lang="en">

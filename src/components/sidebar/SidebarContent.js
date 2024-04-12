@@ -49,13 +49,13 @@ const SidebarContent = ({
       return (
         <div key={index}>
           <MenuItem
-            className="flex justify-between items-center"
+            className="flex justify-between"
             onClick={() => handleMainMenuItemClick(menuItem, index)}
           >
-            <div className="flex items-center">
-              {menuItem.icon && <span className="mr-2">{menuItem.icon}</span>}
-              <span className="text-center">{menuItem.text}</span>
-            </div>
+          <div className="flex items-center">
+  {menuItem.icon && <span className="mr-2">{menuItem.icon}</span>}
+  <span>{menuItem.text}</span>
+</div>
             <span>
               {menuItem.subMenu && (
                 <span>{openSubmenu === index ? "▼" : "▶"}</span>

@@ -255,7 +255,7 @@ const Home = () => {
                     />
                   </div>
                   <div class="flex flex-col items-start justify-center">
-                    <h4 class="font-bold text-gray-800">John Doe</h4>
+                    <h4 class="font-bold text-gray-800">Sunny Doe</h4>
                     <p class="text-gray-600">CEO of Something</p>
                   </div>
                 </div>
