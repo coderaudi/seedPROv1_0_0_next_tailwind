@@ -78,7 +78,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const DashboardLayout = ({ children, toggleThemeMode }) => {
+const DashboardLayout = ({ children }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -91,12 +91,12 @@ const DashboardLayout = ({ children, toggleThemeMode }) => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box>
+    
       <AppBar position="fixed" open={open} enableColorOnDark>
         <Toolbar className="justify-between">
           <div className="flex items-center">
-            {!open && (
-              <>
+          {!open && ( <>
                 <Image
                   src="/images/logo/logo.png"
                   alt="Example"
@@ -107,7 +107,7 @@ const DashboardLayout = ({ children, toggleThemeMode }) => {
                   <MenuIcon />
                 </IconButton>
               </>
-            )}
+          )}
           </div>
 
           <div className="flex items-end">
@@ -121,7 +121,6 @@ const DashboardLayout = ({ children, toggleThemeMode }) => {
           </div>
         </Toolbar>
       </AppBar>
-
       <Drawer
         sx={{
           width: sidebarWidth,
@@ -131,7 +130,7 @@ const DashboardLayout = ({ children, toggleThemeMode }) => {
             boxSizing: "border-box",
           },
         }}
-        variant="persistent"
+        variant="temporary"
         anchor="left"
         open={open}
       >
@@ -155,11 +154,7 @@ const DashboardLayout = ({ children, toggleThemeMode }) => {
           userPermissions={projectDetails?.userRole}
         />
       </Drawer>
-
-      <Main open={open}>
-        <DrawerHeader />
-        {children}
-      </Main>
+      {children}
     </Box>
   );
 };
