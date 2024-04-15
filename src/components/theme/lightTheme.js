@@ -43,11 +43,25 @@ const lightTheme = createTheme({
   typography: {
     fontFamily: "Arial, sans-serif", // Default font family
     h1: {
+      fontSize: "3rem",
+    },
+    h2: {
+      fontSize: "2.5rem",
+    },
+    h3: {
       fontSize: "2rem",
-      fontWeight: "bold",
-      background: "#f5f5f5", // Paper background color for h1 elements
+    },
+    h4: {
+      fontSize: "1.5rem",
+    },
+    h5: {
+      fontSize: "1.25rem",
+    },
+    h6: {
+      fontSize: "1rem",
     },
   },
+  
 });
 
 export default lightTheme;

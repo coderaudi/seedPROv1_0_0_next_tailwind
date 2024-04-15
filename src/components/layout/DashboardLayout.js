@@ -92,22 +92,22 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <Box>
-    
+
       <AppBar position="fixed" open={open} enableColorOnDark>
         <Toolbar className="justify-between">
           <div className="flex items-center">
-          {!open && ( <>
-                <Image
-                  src="/images/logo/logo.png"
-                  alt="Example"
-                  width={200}
-                  height={40}
-                />
-                <IconButton onClick={handleDrawerOpen}>
-                  <MenuIcon />
-                </IconButton>
-              </>
-          )}
+            {!open && (<>
+              <Image
+                src="/images/logo/logo.png"
+                alt="Example"
+                width={200}
+                height={40}
+              />
+              <IconButton onClick={handleDrawerOpen}>
+                <MenuIcon />
+              </IconButton>
+            </>
+            )}
           </div>
 
           <div className="flex items-end">
@@ -154,7 +154,13 @@ const DashboardLayout = ({ children }) => {
           userPermissions={projectDetails?.userRole}
         />
       </Drawer>
+
+      <div style={{
+        paddingTop:'65px'
+      }}>
       {children}
+      </div>
+     
     </Box>
   );
 };
