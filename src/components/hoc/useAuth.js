@@ -1,4 +1,5 @@
 // useAuth.js
+'use client'
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation"; // Changed import statement
 import { enqueueSnackbar } from "notistack"; // Assuming correct usage

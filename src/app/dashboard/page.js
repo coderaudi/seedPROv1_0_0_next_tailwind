@@ -1,5 +1,5 @@
 "use client";
-import { DashboardLayout, useAuth } from "@lib/layout";
+import { DashboardLayout, PageContainer, useAuth } from "@lib/layout";
 import Typography from "@mui/material/Typography";
 import { projectDetails } from "@lib/config/project";
 import { CustomButton, CustomPaper } from "@lib/components/custom";
@@ -11,19 +11,16 @@ const DashboardPage = () => {
     <DashboardLayout>
 
 
-      <Paper variant="elevation" elevation={2} className="p-2">
+      <PageContainer>
+        <Typography variant="h1" >Where does it come from? 1</Typography>
 
-        <div className="" >
-          <Typography variant="h1" >Where does it come from? 1</Typography>
-          <Typography variant="h2" >Where does it come from? 1</Typography>
-          <Typography variant="h3" >Where does it come from? 1</Typography>
-          <Typography variant="h4" >Where does it come from? 1</Typography>
-          <Typography variant="h5" >Where does it come from? 1</Typography>
-          <Typography variant="h6" >Where does it come from? 1</Typography>
-        </div>
-      </Paper>
+      </PageContainer>
 
 
+      <PageContainer>
+        <Typography variant="h1" >Where does it come from? 1</Typography>
+
+      </PageContainer>
     </DashboardLayout>
   );
 };

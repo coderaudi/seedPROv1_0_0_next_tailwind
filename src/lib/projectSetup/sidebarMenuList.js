@@ -39,36 +39,8 @@ const sidebarMenuList = [
       {
         text: "User List",
         icon: <ListIcon />,
-        // link: "/users",
+        link: "/user/userlist",
         permissions: ["user-list"],
-        subMenu: [
-          {
-            text: "User List",
-            icon: <ListIcon />,
-            // link: "/users",
-            permissions: ["user-list"],
-            subMenu: [
-              {
-                text: "internal user list",
-                icon: <DashboardIcon />,
-                link: "/dashboard",
-                permissions: ["dashboard"],
-              },
-              {
-                text: "external user list",
-                icon: <DashboardIcon />,
-                link: "/dashboard",
-                permissions: ["dashboard"],
-              },
-            ],
-          },
-          {
-            text: "Manage Users",
-            icon: <ManageUsersIcon />,
-            link: "/manage-users",
-            permissions: ["manage-users"],
-          },
-        ],
       },
       {
         text: "Manage Users",

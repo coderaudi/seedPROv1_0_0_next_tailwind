@@ -1,8 +1,8 @@
+'use client'
 import React, { useState } from "react";
 import { Divider, MenuItem } from "@lib";
-
-import { projectDetails } from "@lib/config/project";
 import { useRouter } from "next/navigation";
+import { projectDetails } from "@lib/config/project";
 
 const SidebarContent = ({
   uiMenuDivider = false,
@@ -10,7 +10,6 @@ const SidebarContent = ({
   userPermissions = ["default"],
 }) => {
   const router = useRouter();
-
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
   const handleMainMenuItemClick = (menuItem, index) => {
@@ -18,6 +17,12 @@ const SidebarContent = ({
       router.push(menuItem.link);
     } else {
       setOpenSubmenu(openSubmenu === index ? null : index);
+    }
+  };
+
+  const handleSubMenuItemClick = (subMenuItem) => {
+    if (subMenuItem.link) {
+      router.push(subMenuItem.link);
     }
   };
 
@@ -78,8 +83,13 @@ const SidebarContent = ({
       if (!canAccess) {
         return null; // If user cannot access the submenu item, do not render it
       }
+
       return (
-        <MenuItem key={index} className="pl-10 flex items-center">
+        <MenuItem
+          key={index}
+          className="pl-10 flex items-center"
+          onClick={() => handleSubMenuItemClick(subMenuItem)}
+        >
           {subMenuItem.icon && <span className="mr-2">{subMenuItem.icon}</span>}
           {subMenuItem.text}
         </MenuItem>

@@ -8,6 +8,8 @@ import { useLoading } from "src/components/loading/LoadingProvider";
 import MYPieChart from "src/components/charts/piechart";
 import useCustomTheme from "src/components/theme/useCustomTheme";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import PageContainer from "src/components/container/pageContainer";
+
 import useAuth from "src/components/hoc/useAuth";
 
 
@@ -23,5 +25,6 @@ export {
   useCustomTheme,
   MYPieChart,
   DashboardLayout,
+  PageContainer,
   userName,
 };
