@@ -129,6 +129,7 @@ const DashboardLayout = ({ children }) => {
             width: sidebarWidth,
             boxSizing: "border-box",
           },
+      
         }}
         variant="temporary"
         anchor="left"
@@ -141,7 +142,7 @@ const DashboardLayout = ({ children }) => {
             width={200}
             height={40}
           />
-          <IconButton color="primary" onClick={handleDrawerClose}>
+          <IconButton color="secondary" onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
@@ -156,11 +157,11 @@ const DashboardLayout = ({ children }) => {
       </Drawer>
 
       <div style={{
-        paddingTop:'65px'
+        paddingTop: '65px'
       }}>
-      {children}
+        {children}
       </div>
-     
+
     </Box>
   );
 };

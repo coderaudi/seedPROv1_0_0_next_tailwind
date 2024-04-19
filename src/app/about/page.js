@@ -28,6 +28,17 @@ const AboutPage = () => {
             >
               {projectDetails.copyrightMessage}
             </Typography>
+            <Box
+              sx={{
+                width: 100,
+                height: 100,
+                borderRadius: 1,
+                bgcolor: 'primary.main',
+                '&:hover': {
+                  bgcolor: 'primary.dark',
+                },
+              }}
+            />
           </div>
         </div>
       </Paper>

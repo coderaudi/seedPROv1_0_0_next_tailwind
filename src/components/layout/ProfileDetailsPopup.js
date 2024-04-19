@@ -48,6 +48,10 @@ const menuList = [
     text: "Profile",
     icon: <AccountBox fontSize="small" className="mr-2" />,
     link: "/profile",
+    onClick: () => {
+      router.push('/profile')
+      
+    },
   },
   {
     text: "Account Update",

@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import { Divider, MenuItem } from "@lib";
 import { useRouter } from "next/navigation";
 import { projectDetails } from "@lib/config/project";
+import { useTheme} from '@lib/layout'
 
 const SidebarContent = ({
   uiMenuDivider = false,
   menus = projectDetails.sidebarMenuList,
   userPermissions = ["default"],
 }) => {
+  const theme = useTheme()
   const router = useRouter();
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
@@ -100,7 +102,9 @@ const SidebarContent = ({
   return (
     <>
       <Divider />
-      <div>{renderMenuItems(menus)}</div>
+      <div style={{ backgroundColor: theme.palette.secondary.main }}>
+        {renderMenuItems(menus)}
+      </div>
     </>
   );
 };

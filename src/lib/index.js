@@ -8,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Image from "next/image";
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 
 import {
   Badge,
@@ -26,13 +29,16 @@ import {
   Switch,
   CircularProgress,
   Container,
-  
+  TextField
 } from "@mui/material";
 // charts
 
 import { PieChart } from "@mui/x-charts/PieChart";
 
 export {
+  Card,
+  CardActions, CardContent,
+  TextField,
   Button,
   Popover,
   Switch,
@@ -60,5 +66,4 @@ export {
   CircularProgress,
   Backdrop,
   Container
-  
 };

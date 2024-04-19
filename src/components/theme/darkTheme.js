@@ -2,29 +2,12 @@ import { createTheme } from "@mui/material/styles";
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    type: 'dark',
     primary: {
-      main: "#607d8b", // 500 shade
+      main: '#5e35b1', // Primary color for dark theme
     },
     secondary: {
-      main: "#90a4ae", // 300 shade
-    },
-    background: {
-      default: "#263238", // 900 shade
-      paper: "#37474f", // 800 shade
-    },
-    text: {
-      primary: "#FFF", // White color for primary text
-      secondary: "#BDBDBD", // Light gray color for secondary text
-      accent: "#64B5F6", // Adjusted to match your light theme's accent color
-      error: "#EF9A9A", // Adjusted to match your light theme's error color
-      success: "#A5D6A7", // Adjusted to match your light theme's success color
-      warning: "#FFB74D", // Adjusted to match your light theme's warning color
-      info: "#90CAF9", // Adjusted to match your light theme's info color
-      heading: "#FFF", // White color for headings
-      link: "#64B5F6", // Adjusted to match your light theme's link color
-      disabled: "#9E9E9E", // Adjusted to match your light theme's disabled color
-      circularLoading: "#EF9A9A", // Adjusted to match your light theme's error color
+      main: '#957', // Example secondary color for dark theme
     },
   },
   components: {
