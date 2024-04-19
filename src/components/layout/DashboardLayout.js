@@ -128,6 +128,7 @@ const DashboardLayout = ({ children }) => {
           "& .MuiDrawer-paper": {
             width: sidebarWidth,
             boxSizing: "border-box",
+            backgroundColor: theme.palette.secondary.main 
           },
       
         }}

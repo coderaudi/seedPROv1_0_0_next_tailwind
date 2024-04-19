@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Divider, MenuItem } from "@lib";
 import { useRouter } from "next/navigation";
 import { projectDetails } from "@lib/config/project";
-import { useTheme} from '@lib/layout'
+import { useTheme } from '@lib/layout'
 
 const SidebarContent = ({
   uiMenuDivider = false,
