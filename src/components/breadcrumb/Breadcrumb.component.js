@@ -1,6 +1,5 @@
 import React from 'react';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import { Typography } from '@lib';
+import { Typography , Breadcrumbs } from '@lib';
 import Link from 'next/link';
 
 function Breadcrumb({ items }) {
@@ -17,7 +16,9 @@ function Breadcrumb({ items }) {
         const { text, href } = item;
         if (href) {
           return (
-            <Link key={index} underline="hover" color="inherit" href={href} >
+            <Link key={index} underline="hover" color="inherit" 
+          
+            href={href} >
               {text}
             </Link>
           );
