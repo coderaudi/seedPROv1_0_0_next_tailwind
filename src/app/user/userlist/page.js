@@ -109,7 +109,9 @@ const itemData = [
 
 const UserList = () => {
   return (
-    <DashboardLayout>
+    <DashboardLayout  
+     pageName={"Gallary"}
+    >
      <ImageList  cols={6}>
       {itemData.map((item) => (
         <ImageListItem key={item.img}>

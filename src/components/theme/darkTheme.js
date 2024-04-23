@@ -4,10 +4,10 @@ const darkTheme = createTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#5e35b1', // Primary color for dark theme
+      main: '#022F40', // Primary color for dark theme
     },
     secondary: {
-      main: '#957', // Example secondary color for dark theme
+      main: '#315972', // Example secondary color for dark theme
     },
   },
   components: {
@@ -40,6 +40,13 @@ const darkTheme = createTheme({
       fontSize: "1rem",
     },
   },
+
+  // custome theme ---
+  custom: {
+    sidebar: {
+      sidebarTextColor: "#fff"
+    }
+  }
 });
 
 export default darkTheme;

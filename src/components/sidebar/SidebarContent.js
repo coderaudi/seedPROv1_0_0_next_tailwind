@@ -102,7 +102,7 @@ const SidebarContent = ({
   return (
     <>
       <Divider />
-      <div style={{ backgroundColor: theme.palette.secondary.main }}>
+      <div style={{ color: theme.custom.sidebar.sidebarTextColor }}>
         {renderMenuItems(menus)}
       </div>
     </>

@@ -68,6 +68,9 @@ const menuList = [
     text: "Security",
     icon: <Security fontSize="small" className="mr-2" />,
     link: "/security",
+    onClick: () => {
+      router.push('/security')
+    },
   },
   {
     text: "Settings",

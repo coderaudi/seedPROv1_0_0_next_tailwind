@@ -6,6 +6,7 @@ import {
   MenuIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  NavigateNextIcon
 } from "@lib/icons";
 
 import {
@@ -21,6 +22,7 @@ import {
   Switch,
   Paper,
   Image,
+  Breadcrumbs
 } from "@lib";
 
 import {
@@ -31,6 +33,8 @@ import {
 } from "@lib/components";
 
 import { projectDetails } from "@lib/config/project";
+import Link from "next/link";
+import Breadcrumb from "../breadcrumb/Breadcrumb.component";
 const sidebarWidth = projectDetails?.sidebarWidth || 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -78,7 +82,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ pageName, breadcrumbItems, layoutCustomContent, children }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -89,6 +93,7 @@ const DashboardLayout = ({ children }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
 
   return (
     <Box>
@@ -128,9 +133,9 @@ const DashboardLayout = ({ children }) => {
           "& .MuiDrawer-paper": {
             width: sidebarWidth,
             boxSizing: "border-box",
-            backgroundColor: theme.palette.secondary.main 
+            backgroundColor: theme.palette.secondary.main
           },
-      
+
         }}
         variant="temporary"
         anchor="left"
@@ -160,7 +165,19 @@ const DashboardLayout = ({ children }) => {
       <div style={{
         paddingTop: '65px'
       }}>
-        {children}
+
+        <div className="pl-3 pr-3 flex justify-between">
+          <div>
+            {pageName && <Typography variant="h5" >{pageName}</Typography>}
+            {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
+          </div>
+          <>
+            {layoutCustomContent && layoutCustomContent()}
+          </>
+        </div>
+        <>
+          {children}
+        </>
       </div>
 
     </Box>

@@ -5,11 +5,18 @@ import axios from 'axios';
 export const getData = async (url) => {
   try {
     const response = await axios.get(url);
-    return response.data;
+    const { data, status } = response;
+    const success = status >= 200 && status < 300;
+
+    // Return an object containing the desired information
+    return { data, success, status, error: null };
   } catch (error) {
     // Handle error
-    console.error('Error fetching data:', error);
-    throw error; // Rethrow the error for handling in the caller function
+    const { response } = error;
+    const status = response ? response.status : null;
+
+    // Return an object with error information
+    return { data: null, success: false, status, error: error.message || 'Unknown error' };
   }
 };
 
@@ -17,11 +24,18 @@ export const getData = async (url) => {
 export const postData = async (url, payloadData) => {
   try {
     const response = await axios.post(url, payloadData);
-    return response.data;
+    const { data, status } = response;
+    const success = status >= 200 && status < 300;
+
+    // Return an object containing the desired information
+    return { data, success, status, error: null };
   } catch (error) {
     // Handle error
-    console.error('Error posting data:', error);
-    throw error; // Rethrow the error for handling in the caller function
+    const { response } = error;
+    const status = response ? response.status : null;
+
+    // Return an object with error information
+    return { data: null, success: false, status, error: error.message || 'Unknown error' };
   }
 };
 
@@ -29,11 +43,18 @@ export const postData = async (url, payloadData) => {
 export const putData = async (url, payloadData) => {
   try {
     const response = await axios.put(url, payloadData);
-    return response.data;
+    const { data, status } = response;
+    const success = status >= 200 && status < 300;
+
+    // Return an object containing the desired information
+    return { data, success, status, error: null };
   } catch (error) {
     // Handle error
-    console.error('Error updating data:', error);
-    throw error; // Rethrow the error for handling in the caller function
+    const { response } = error;
+    const status = response ? response.status : null;
+
+    // Return an object with error information
+    return { data: null, success: false, status, error: error.message || 'Unknown error' };
   }
 };
 
@@ -41,10 +62,17 @@ export const putData = async (url, payloadData) => {
 export const deleteData = async (url) => {
   try {
     const response = await axios.delete(url);
-    return response.data;
+    const { data, status } = response;
+    const success = status >= 200 && status < 300;
+
+    // Return an object containing the desired information
+    return { data, success, status, error: null };
   } catch (error) {
     // Handle error
-    console.error('Error deleting data:', error);
-    throw error; // Rethrow the error for handling in the caller function
+    const { response } = error;
+    const status = response ? response.status : null;
+
+    // Return an object with error information
+    return { data: null, success: false, status, error: error.message || 'Unknown error' };
   }
 };

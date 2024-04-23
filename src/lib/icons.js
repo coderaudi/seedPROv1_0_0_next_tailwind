@@ -32,8 +32,11 @@ import {
   LinkSharp,
   AccountBox,
   ManageAccounts,
+  NavigateNextIcon
 } from "@mui/icons-material";
+
 export {
+  NavigateNextIcon,
   IconButton,
   MenuIcon,
   ChevronLeftIcon,

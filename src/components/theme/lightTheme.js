@@ -4,11 +4,12 @@ const lightTheme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#1976d2', // Example primary color for light theme
+      main: '#14746F', // Example primary color for light theme
     },
     secondary: {
-      main: '#1976d2', // Example secondary color for light theme
+      main: '#469D89', // Example secondary color for light theme,
     },
+   
   },
   components: {
     MuiIconButton: {
@@ -40,7 +41,12 @@ const lightTheme = createTheme({
       fontSize: "1rem",
     },
   },
-  
+  // custome theme ---
+  custom: {
+    sidebar: {
+      sidebarTextColor: "#fff"
+    }
+  }
 });
 
 export default lightTheme;

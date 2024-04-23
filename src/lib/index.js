@@ -13,6 +13,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 
 import {
+  Breadcrumbs,
   Badge,
   Button,
   Alert,
@@ -36,6 +37,7 @@ import {
 import { PieChart } from "@mui/x-charts/PieChart";
 
 export {
+  Breadcrumbs,
   Card,
   CardActions, CardContent,
   TextField,

@@ -1,9 +1,9 @@
 "use client";
-import { DashboardLayout, PageContainer, Card ,useAuth } from "@lib/layout";
+import { CardContainer, DashboardLayout, PageContainer, useAuth } from "@lib/layout";
 import { useForm, yup, generateYupResolver } from '@lib/form';
 import Typography from "@mui/material/Typography";
 import { CustomButton, InputField } from "@lib/components/custom";
-import { Container, Box, Paper } from "@lib";
+import { Container, Box, Paper, Grid, Card } from "@lib";
 
 // Define Yup schema for validation
 const validationRules = {
@@ -34,64 +34,142 @@ const ContactUsPage = () => {
   };
 
   return (
-    <DashboardLayout>
-      <PageContainer>
-        <Typography variant="h4">Contact Us</Typography>
-        <div className="max-w-md">
-          {/* Name */}
-          <InputField
-            size="small"
-            color="primary"
-            focused
-            id="name"
-            label="Name"
-            variant="outlined"
-            {...register("name")}
-            margin="normal"
-            errorMessage={errors.name && errors.name.message}
-          />
-          {/* Query */}
-          <InputField
-            size="small"
-            color="primary"
-            focused
-            id="query"
-            label="Query"
-            variant="outlined"
-            {...register("query")}
-            margin="normal"
-            errorMessage={errors.query && errors.query.message}
-          />
-          {/* Description */}
-          <InputField
-            size="small"
-            color="primary"
-            focused
-            id="description"
-            label="Description"
-            variant="outlined"
-            {...register("description")}
-            multiline
-            rows={4}
-            margin="normal"
-            errorMessage={errors.description && errors.description.message}
-          />
-          {/* Clear Button */}
-          <CustomButton
-            className='mr-3'
-            title={'Clear'}
-            onClick={handleClear}
-            variant="outlined"
-            color="primary"
-          />
-          {/* Submit Button */}
-          <CustomButton
-            title={'Submit'}
-            onClick={handleSubmit(onSubmit)}
-            variant="contained"
-            color="primary"
-          />
+    <DashboardLayout 
+     pageName={'Dashboard Page1'}
+     breadcrumbItems={[
+      { text: 'Home', href: '/' },
+      { text: 'About', href: '/about' },
+      { text: 'Product Details' },
+    ]}
+     layoutCustomContent={()=>{
+
+      return (
+        <>
+       <CustomButton 
+        title={"Refresh"}
+       />
+        </>
+      )
+     }}
+    >
+      <PageContainer >
+
+        <div class="grid grid-rows-3 grid-flow-col gap-4">
+          <div class="row-span-3 ...">  <Typography variant="h4">Contact Us</Typography>
+            <div className="max-w-md">
+              {/* Name */}
+              <InputField
+                size="small"
+                color="primary"
+                focused
+                id="name"
+                label="Name"
+                variant="outlined"
+                {...register("name")}
+                margin="normal"
+                errorMessage={errors.name && errors.name.message}
+              />
+              {/* Query */}
+              <InputField
+                size="small"
+                color="primary"
+                focused
+                id="query"
+                label="Query"
+                variant="outlined"
+                {...register("query")}
+                margin="normal"
+                errorMessage={errors.query && errors.query.message}
+              />
+              {/* Description */}
+              <InputField
+                size="small"
+                color="primary"
+                focused
+                id="description"
+                label="Description"
+                variant="outlined"
+                {...register("description")}
+                multiline
+                rows={4}
+                margin="normal"
+                errorMessage={errors.description && errors.description.message}
+              />
+              {/* Clear Button */}
+              <CustomButton
+                className='mr-3'
+                title={'Clear'}
+                onClick={handleClear}
+                variant="outlined"
+                color="primary"
+              />
+              {/* Submit Button */}
+              <CustomButton
+                title={'Submit'}
+                onClick={handleSubmit(onSubmit)}
+                variant="contained"
+                color="primary"
+              />
+            </div></div>
+          <div class="col-span-2 ...">  <Typography variant="h4">Contact Us</Typography>
+            <div className="max-w-md">
+              {/* Name */}
+              <InputField
+                size="small"
+                color="primary"
+                focused
+                id="name"
+                label="Name"
+                variant="outlined"
+                {...register("name")}
+                margin="normal"
+                errorMessage={errors.name && errors.name.message}
+              />
+              {/* Query */}
+              <InputField
+                size="small"
+                color="primary"
+                focused
+                id="query"
+                label="Query"
+                variant="outlined"
+                {...register("query")}
+                margin="normal"
+                errorMessage={errors.query && errors.query.message}
+              />
+              {/* Description */}
+              <InputField
+                size="small"
+                color="primary"
+                focused
+                id="description"
+                label="Description"
+                variant="outlined"
+                {...register("description")}
+                multiline
+                rows={4}
+                margin="normal"
+                errorMessage={errors.description && errors.description.message}
+              />
+              {/* Clear Button */}
+              <CustomButton
+                className='mr-3'
+                title={'Clear'}
+                onClick={handleClear}
+                variant="outlined"
+                color="primary"
+              />
+              {/* Submit Button */}
+              <CustomButton
+                title={'Submit'}
+                onClick={handleSubmit(onSubmit)}
+                variant="contained"
+                color="primary"
+              />
+            </div></div>
+          <div class="row-span-2 col-span-2 ...">03</div>
         </div>
+
       </PageContainer>
     </DashboardLayout>
   );

@@ -6,9 +6,11 @@ const PageContainer = ({ color, children }) => {
   };
 
   return (
+   <>
     <Paper variant="elevation" elevation={2} className="p-2 m-1" style={paperStyle}>
       {children}
     </Paper>
+   </>
   );
 };
 
