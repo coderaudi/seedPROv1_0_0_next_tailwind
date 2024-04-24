@@ -1,11 +1,8 @@
 import React from 'react';
-import { Typography , Breadcrumbs } from '@lib';
+import { Typography, Breadcrumbs } from '@lib';
 import Link from 'next/link';
 
 function Breadcrumb({ items }) {
-
-
-
   return (
     <Breadcrumbs
       sx={{
@@ -16,9 +13,11 @@ function Breadcrumb({ items }) {
         const { text, href } = item;
         if (href) {
           return (
-            <Link key={index} underline="hover" color="inherit" 
-          
-            href={href} >
+            <Link
+              key={index}
+              href={href}
+              style={{ textDecoration: 'none', color: 'black' }} // Remove underline and set color
+            >
               {text}
             </Link>
           );
@@ -30,7 +29,7 @@ function Breadcrumb({ items }) {
           );
         }
       })}
-    </Breadcrumbs>
+    </Breadcrumbs >
   );
 }
 
