@@ -14,6 +14,7 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 // custom
 import PageContainer from "src/components/container/pageContainer";
 import CardContainer from "src/components/container/cardContainer";
+import CustomizedDialogs from "src/components/dialog/dialog.component";
 
 
 
@@ -31,5 +32,6 @@ export {
   DashboardLayout,
   PageContainer,
   CardContainer,
+  CustomizedDialogs,
   userName,
 };
