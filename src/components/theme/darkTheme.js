@@ -10,6 +10,7 @@ const darkTheme = createTheme({
       main: "#315972", // Example secondary color for dark theme
     },
   },
+
   components: {
     MuiDatePicker: {
       defaultProps: {
@@ -58,6 +59,9 @@ const darkTheme = createTheme({
   custom: {
     sidebar: {
       sidebarTextColor: "#fff",
+    },
+    paper: {
+      profileDetailsBg: "#1fa9a2",
     },
   },
 });

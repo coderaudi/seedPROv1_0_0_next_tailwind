@@ -23,13 +23,13 @@ import { Divider, Paper } from "@lib";
 import FullScreenAPP from "./FullScreenApp";
 import NotificationPopup from "./NotificationPopup";
 import { useRouter } from "next/navigation";
-import { removeCookie } from "@lib/utils";
+import { getCookie, removeCookie } from "@lib/utils";
+import { useTheme } from "@lib/layout";
+const ProfilePicture = ({}) => {
+  const { push } = useRouter();
+  const { image, email, username } = getCookie();
+  const theme = useTheme();
 
-
-
-
-const ProfilePicture = ({ src, name, email }) => {
-  const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -43,58 +43,55 @@ const ProfilePicture = ({ src, name, email }) => {
   const open = Boolean(anchorEl);
 
   // Define your menu list
-const menuList = [
-  {
-    text: "Profile",
-    icon: <AccountBox fontSize="small" className="mr-2" />,
-    link: "/profile",
-    onClick: () => {
-      router.push('/profile')
-      
+  const menuList = [
+    {
+      text: "Profile",
+      icon: <AccountBox fontSize="small" className="mr-2" />,
+      link: "/profile",
+      onClick: () => {
+        push("/profile");
+      },
     },
-  },
-  {
-    text: "Account Update",
-    icon: <ManageAccounts fontSize="small" className="mr-2" />,
-    link: "/account-update",
-  },
-  {
-    text: "Social Links",
-    icon: <LinkSharp fontSize="small" className="mr-2" />,
-    link: "/social-links",
-    divided: true,
-  },
-  {
-    text: "Security",
-    icon: <Security fontSize="small" className="mr-2" />,
-    link: "/security",
-    onClick: () => {
-      router.push('/security')
+    {
+      text: "Account Update",
+      icon: <ManageAccounts fontSize="small" className="mr-2" />,
+      link: "/account-update",
     },
-  },
-  {
-    text: "Settings",
-    icon: <Settings fontSize="small" className="mr-2" />,
-    link: "/settings",
-    divided: true,
-  },
-  {
-    text: "Logout",
-    icon: <Logout fontSize="small" className="mr-2" />,
-    link: "/logout",
-    onClick: () => {
-      router.push('/login')
-      removeCookie();
-      
+    {
+      text: "Social Links",
+      icon: <LinkSharp fontSize="small" className="mr-2" />,
+      link: "/social-links",
+      divided: true,
     },
-  },
-];
-
+    {
+      text: "Security",
+      icon: <Security fontSize="small" className="mr-2" />,
+      link: "/security",
+      onClick: () => {
+        push("/security");
+      },
+    },
+    {
+      text: "Settings",
+      icon: <Settings fontSize="small" className="mr-2" />,
+      link: "/settings",
+      divided: true,
+    },
+    {
+      text: "Logout",
+      icon: <Logout fontSize="small" className="mr-2" />,
+      link: "/logout",
+      onClick: () => {
+        push("/login");
+        removeCookie();
+      },
+    },
+  ];
 
   return (
     <div className="p-1">
       <IconButton color="inherit" onClick={handleClick}>
-        <Avatar alt="Profile Picture" src={src} />
+        <Avatar alt="Profile Picture" src={image} />
       </IconButton>
 
       <Popover
@@ -110,26 +107,26 @@ const menuList = [
           horizontal: "right",
         }}
       >
-        <Paper>
+        <Paper
+          style={{
+            color: theme.custom.sidebar.sidebarTextColor,
+            background: theme.custom.paper.profileDetailsBg,
+          }}
+        >
           <div className="flex p-3">
             <div className="w-1/3 pr-2">
-              <Avatar alt="Profile Picture" src={src} />
+              <Avatar alt="Profile Picture" src={image} />
             </div>
 
             <div className="w-4/7">
-              <div className="text-lg font-semibold">Sunny Doe</div>
-              <div className="text-sm text-gray-500">john.doe@example.com</div>
+              <div className="text-lg font-semibold">{username}</div>
+              <div className="text-sm ">{email}</div>
             </div>
           </div>
           <Divider />
           <div className="flex items-center justify-center">
-            <p />
-            <FullScreenAPP /> {/* Include FullScreenAPP component */}
-            <p />
-            <NotificationPopup />
-            <p />
-            <ThemeSwitchButton /> {/* Include ThemeSwitchButton component */}
-            <p />
+            <FullScreenAPP />
+            <ThemeSwitchButton />
           </div>
           <Divider />
           {menuList?.map((menuItem, index) => (
@@ -144,7 +141,7 @@ const menuList = [
                 {menuItem.text}
               </MenuItem>
 
-              {menuItem?.divided && <Divider />}
+              {menuItem?.divided && <Divider color="white" />}
             </>
           ))}
         </Paper>

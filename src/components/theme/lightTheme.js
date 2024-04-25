@@ -52,6 +52,9 @@ const lightTheme = createTheme({
     sidebar: {
       sidebarTextColor: "#fff",
     },
+    paper: {
+      profileDetailsBg: "#64B9A6",
+    },
   },
 });
 

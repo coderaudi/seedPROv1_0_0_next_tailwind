@@ -1,16 +1,16 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { Divider, MenuItem } from "@lib";
 import { useRouter } from "next/navigation";
 import { projectDetails } from "@lib/config/project";
-import { useTheme } from '@lib/layout'
+import { useTheme } from "@lib/layout";
 
 const SidebarContent = ({
   uiMenuDivider = false,
   menus = projectDetails.sidebarMenuList,
   userPermissions = ["default"],
 }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const router = useRouter();
   const [openSubmenu, setOpenSubmenu] = useState(null);
 
@@ -101,7 +101,6 @@ const SidebarContent = ({
 
   return (
     <>
-      <Divider />
       <div style={{ color: theme.custom.sidebar.sidebarTextColor }}>
         {renderMenuItems(menus)}
       </div>

@@ -6,7 +6,7 @@ import {
   MenuIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  NavigateNextIcon
+  NavigateNextIcon,
 } from "@lib/icons";
 
 import {
@@ -22,7 +22,7 @@ import {
   Switch,
   Paper,
   Image,
-  Breadcrumbs
+  Breadcrumbs,
 } from "@lib";
 
 import {
@@ -82,7 +82,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const DashboardLayout = ({ pageName, breadcrumbItems, layoutCustomContent, children }) => {
+const DashboardLayout = ({
+  pageName,
+  breadcrumbItems,
+  layoutCustomContent,
+  children,
+}) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -94,24 +99,28 @@ const DashboardLayout = ({ pageName, breadcrumbItems, layoutCustomContent, child
     setOpen(false);
   };
 
-
   return (
     <Box>
-
-      <AppBar position="fixed" open={open} enableColorOnDark>
+      <AppBar
+        className="shadow-xl"
+        position="fixed"
+        open={open}
+        enableColorOnDark
+      >
         <Toolbar className="justify-between">
           <div className="flex items-center">
-            {!open && (<>
-              <Image
-                src="/images/logo/logo.png"
-                alt="Example"
-                width={200}
-                height={40}
-              />
-              <IconButton onClick={handleDrawerOpen}>
-                <MenuIcon />
-              </IconButton>
-            </>
+            {!open && (
+              <>
+                <Image
+                  src="/images/logo/logo.png"
+                  alt="Example"
+                  width={200}
+                  height={40}
+                />
+                <IconButton onClick={handleDrawerOpen}>
+                  <MenuIcon />
+                </IconButton>
+              </>
             )}
           </div>
 
@@ -133,15 +142,14 @@ const DashboardLayout = ({ pageName, breadcrumbItems, layoutCustomContent, child
           "& .MuiDrawer-paper": {
             width: sidebarWidth,
             boxSizing: "border-box",
-            backgroundColor: theme.palette.secondary.main
+            backgroundColor: theme.palette.secondary.main,
           },
-
         }}
         variant="temporary"
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        <DrawerHeader className="shadow-xl mb-1">
           <Image
             src="/images/logo/logo.png"
             alt="Example"
@@ -162,24 +170,20 @@ const DashboardLayout = ({ pageName, breadcrumbItems, layoutCustomContent, child
         />
       </Drawer>
 
-      <div style={{
-        paddingTop: '65px'
-      }}>
-
+      <div
+        style={{
+          paddingTop: "65px",
+        }}
+      >
         <div className="pl-3 pr-3 flex justify-between">
           <div>
-            {pageName && <Typography variant="h5" >{pageName}</Typography>}
+            {pageName && <Typography variant="h5">{pageName}</Typography>}
             {breadcrumbItems && <Breadcrumb items={breadcrumbItems} />}
           </div>
-          <>
-            {layoutCustomContent && layoutCustomContent()}
-          </>
+          <>{layoutCustomContent && layoutCustomContent()}</>
         </div>
-        <>
-          {children}
-        </>
+        <>{children}</>
       </div>
-
     </Box>
   );
 };

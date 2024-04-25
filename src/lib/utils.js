@@ -3,7 +3,7 @@ import CryptoJS from "crypto-js"; // Import CryptoJS for encryption and decrypti
 
 import { sidebarMenuList } from "./projectSetup/sidebarMenuList";
 import { projectDetails } from "./projectDetails";
-const {clientCookiesKey} = projectDetails;
+const { clientCookiesKey } = projectDetails;
 // Function to set data to local storage
 export const setToLocalStorage = (key, value) => {
   try {
@@ -49,8 +49,6 @@ export const checkPermissionForPath = (userPermissions, path) => {
   return checkPermissionForPage(userPermissions, path);
 };
 
-
-
 // Utility function to set data in a cookie
 export const setCookie = (data, options = {}) => {
   Cookies.set(clientCookiesKey, JSON.stringify(data), options);
@@ -59,7 +57,7 @@ export const setCookie = (data, options = {}) => {
 // Utility function to get data from a cookie
 export const getCookie = () => {
   const cookieData = Cookies.get(clientCookiesKey);
-  return cookieData ? JSON.parse(cookieData) : null;
+  return cookieData ? JSON.parse(cookieData)?.data : null;
 };
 
 // Utility function to remove a cookie
@@ -67,26 +65,31 @@ export const removeCookie = () => {
   Cookies.remove(clientCookiesKey);
 };
 
-
 // Utility function to encrypt data and set cookie
 export const setEncryptedCookie = (key, data) => {
-  const encryptedData = CryptoJS.AES.encrypt(JSON.stringify(data), projectDetails.COOKIES_ENCRYPTION_KE).toString();
+  const encryptedData = CryptoJS.AES.encrypt(
+    JSON.stringify(data),
+    projectDetails.COOKIES_ENCRYPTION_KE
+  ).toString();
   Cookies.set(key, encryptedData);
-  Cookies.set("abc_audi", 'abc audi 123123 data');
+  Cookies.set("abc_audi", "abc audi 123123 data");
 };
 
 // Utility function to get encrypted cookie and decrypt data
 export const getDecryptedCookie = (key) => {
   const encryptedData = Cookies.get(key);
 
-  console.log("you have encryptedData --> ", encryptedData)
+  console.log("you have encryptedData --> ", encryptedData);
   if (encryptedData) {
     try {
-      const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, projectDetails.COOKIES_ENCRYPTION_KEY);
+      const decryptedBytes = CryptoJS.AES.decrypt(
+        encryptedData,
+        projectDetails.COOKIES_ENCRYPTION_KEY
+      );
       const decryptedData = decryptedBytes.toString(CryptoJS.enc.Utf8);
       return JSON.parse(decryptedData);
     } catch (error) {
-      console.error('Error decrypting cookie:', error);
+      console.error("Error decrypting cookie:", error);
       return null;
     }
   }

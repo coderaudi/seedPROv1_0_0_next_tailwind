@@ -12,7 +12,7 @@ export default function APP() {
   };
 
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex justify-center items-center h-full mt-12">
       <div className="text-center w-1/2">
         <Typography variant="h3">{projectDetails.projectName}</Typography>
         <Typography variant="h4">v{projectDetails.version}</Typography>

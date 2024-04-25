@@ -36,7 +36,6 @@ export default function RootLayout({ children }) {
     const _cookies = getCookie();
     console.log("layout mounted");
     console.log("layout _cookies", _cookies);
-
     // if (!_cookies) {
     //   redirect('/login'); // Redirect to login page if token is not present
     // }

@@ -27,13 +27,5 @@ body {
     text-wrap: balance;
   }
   
-  .MuiSvgIcon-root {
-    color: rgb(156, 42, 42) !important; /* Set the color to red */
-  }
-  
-  /* Optionally, if you want to target only specific icon sizes (e.g., medium) */
-  .MuiSvgIcon-fontSizeMedium {
-    /* Adjust the color for medium-sized icons */
-    color: red !important;
-  }
+
 }

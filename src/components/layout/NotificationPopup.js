@@ -37,13 +37,6 @@ const NotificationPopup = () => {
     <div className="p-1">
       <IconButton color="inherit" onClick={handleClick}>
         <CampaignIcon className="mt-2" fontSize="large" />
-        <Badge
-          className="animate-pulse mb-8"
-          badgeContent={notificationsList.length}
-          color="warning"
-          variant="outlined"
-        ></Badge>
-        {/* Assuming you have a NotificationsIcon */}
       </IconButton>
 
       <Popover
