@@ -4,7 +4,10 @@ import { useForm, yup, generateYupResolver } from '@lib/form';
 import Typography from "@mui/material/Typography";
 import { CustomButton, InputField } from "@lib/components/custom";
 import { DashboardLayout, PageContainer, CustomizedDialogs } from "@lib/layout";
-import CustomDraggableDialog from "src/components/dialog/customDraggableDialog.component";
+import { DatePicker } from '@mui/x-date-pickers';
+
+
+
 
 // Define Yup schema for validation
 const validationRules = {
@@ -60,6 +63,10 @@ const ContactUsPage = () => {
       }}
     >
       <PageContainer>
+
+      <DatePicker 
+      />
+
 
         <CustomizedDialogs
           //  width={50} // Width in percentage
