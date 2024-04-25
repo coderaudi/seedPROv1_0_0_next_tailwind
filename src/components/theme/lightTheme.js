@@ -2,20 +2,26 @@ import { createTheme } from "@mui/material/styles";
 
 const lightTheme = createTheme({
   palette: {
-    type: 'light',
+    type: "light",
     primary: {
-      main: '#14746F', // Example primary color for light theme
+      main: "#14746F", // Example primary color for light theme
     },
     secondary: {
-      main: '#469D89', // Example secondary color for light theme,
+      main: "#469D89", // Example secondary color for light theme,
     },
-   
   },
   components: {
     MuiIconButton: {
       styleOverrides: {
         root: {
           color: "#fff",
+        },
+      },
+    },
+    MuiDatePicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "yellow",
         },
       },
     },
@@ -44,9 +50,9 @@ const lightTheme = createTheme({
   // custome theme ---
   custom: {
     sidebar: {
-      sidebarTextColor: "#fff"
-    }
-  }
+      sidebarTextColor: "#fff",
+    },
+  },
 });
 
 export default lightTheme;

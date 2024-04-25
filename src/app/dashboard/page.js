@@ -1,13 +1,17 @@
-'use client'
-import React, { useState } from 'react';
-import { useForm, yup, generateYupResolver } from '@lib/form';
+"use client";
+import React, { useState } from "react";
+import { useForm, yup, generateYupResolver } from "@lib/form";
 import Typography from "@mui/material/Typography";
-import { CustomButton, InputField } from "@lib/components/custom";
+import {
+  CustomButton,
+  CustomDatePicker,
+  InputField,
+  SmallDatePicker,
+} from "@lib/components/custom";
 import { DashboardLayout, PageContainer, CustomizedDialogs } from "@lib/layout";
-import { DatePicker } from '@mui/x-date-pickers';
+import { DatePicker } from "@mui/x-date-pickers";
 
-
-
+import dayjs from "dayjs";
 
 // Define Yup schema for validation
 const validationRules = {
@@ -17,22 +21,26 @@ const validationRules = {
 };
 
 const DEFAULT_FORM_VALUES = {
-  name: "Test user", // Set default value for name field
+  name: "Test user123", // Set default value for name field
   query: "", // Set default value for query field
-  description: "" // Set default value for description field
+  description: "", // Set default value for description field
 };
 
 const ContactUsPage = () => {
-
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
     resolver: generateYupResolver(validationRules),
-    defaultValues: DEFAULT_FORM_VALUES
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
   const onSubmit = (data) => {
@@ -48,25 +56,62 @@ const ContactUsPage = () => {
 
   return (
     <DashboardLayout
-      pageName={'Dashboard Page1'}
+      pageName={"Dashboard Page1"}
       breadcrumbItems={[
-        { text: 'Home', href: '/' },
-        { text: 'About', href: '/about' },
-        { text: 'Product Details' },
+        { text: "Home", href: "/" },
+        { text: "About", href: "/about" },
+        { text: "Product Details" },
       ]}
       layoutCustomContent={() => {
-        return (
-          <CustomButton
-            title={"Refresh"}
-          />
-        );
+        return <CustomButton title={"Refresh"} />;
       }}
     >
       <PageContainer>
+        <div>
+          <div className="max-w-md">
+            <CustomDatePicker
+              title="MY Date Picker"
+              width="120px"
+              height="120px"
+            />
+            {/* Name */}
+            <InputField
+              size="small"
+              color="primary"
+              id="name"
+              label="Name"
+              variant="outlined"
+              {...register("name")}
+              margin="normal"
+              errorMessage={errors.name && errors.name.message}
+            />
+            {/* Query */}
+            <InputField
+              size="small"
+              color="primary"
+              id="query"
+              label="Query"
+              variant="outlined"
+              {...register("query")}
+              margin="normal"
+              errorMessage={errors.query && errors.query.message}
+            />
+            {/* Description */}
 
-      <DatePicker 
-      />
-
+            <InputField
+              size="small"
+              color="primary"
+              id="description"
+              label="Description"
+              variant="outlined"
+              {...register("description")}
+              multiline
+              rows={4}
+              margin="normal"
+              errorMessage={errors.description && errors.description.message}
+            />
+          </div>
+        </div>
 
         <CustomizedDialogs
           //  width={50} // Width in percentage
@@ -74,17 +119,20 @@ const ContactUsPage = () => {
           maxWidth={100} // Maximum width in pixels
           openDialog={openDialog}
           handleDialog={setOpenDialog}
-          buttonTitle='TEST POPUP'
+          buttonTitle="TEST POPUP"
           title={"Custom Dialog Title"}
           contentJSx={() => (
             <div>
-              <Typography variant="body1">Dialog content goes here.</Typography>
               <div className="max-w-md">
+                <CustomDatePicker
+                  title="MY Date Picker"
+                  width="120px"
+                  height="120px"
+                />
                 {/* Name */}
                 <InputField
                   size="small"
                   color="primary"
-                  focused
                   id="name"
                   label="Name"
                   variant="outlined"
@@ -96,7 +144,6 @@ const ContactUsPage = () => {
                 <InputField
                   size="small"
                   color="primary"
-                  focused
                   id="query"
                   label="Query"
                   variant="outlined"
@@ -109,7 +156,6 @@ const ContactUsPage = () => {
                 <InputField
                   size="small"
                   color="primary"
-                  focused
                   id="description"
                   label="Description"
                   variant="outlined"
@@ -117,7 +163,9 @@ const ContactUsPage = () => {
                   multiline
                   rows={4}
                   margin="normal"
-                  errorMessage={errors.description && errors.description.message}
+                  errorMessage={
+                    errors.description && errors.description.message
+                  }
                 />
               </div>
             </div>

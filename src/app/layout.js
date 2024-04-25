@@ -6,6 +6,9 @@ import { SnackbarProvider } from "notistack";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
 
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
 const inter = Inter({ subsets: ["latin"] });
 
 import { projectDetails } from "@lib/config/project";
@@ -30,7 +33,6 @@ export default function RootLayout({ children }) {
   const userPermissions = ["dashboard1", "admin1"];
 
   useEffect(() => {
-
     const _cookies = getCookie();
     console.log("layout mounted");
     console.log("layout _cookies", _cookies);
@@ -38,9 +40,7 @@ export default function RootLayout({ children }) {
     // if (!_cookies) {
     //   redirect('/login'); // Redirect to login page if token is not present
     // }
-    
   }, []);
-
 
   return (
     <html lang="en">
@@ -48,20 +48,22 @@ export default function RootLayout({ children }) {
         {/* <h1>{loading ? <>"isAuthenticated CHECKING"</> : "DONE check"}</h1>{" "} */}
         {/* <h1>{isAuthenticated ? "isAuthenticated" : "NOT isAuthenticated"}</h1>{" "} */}
         <CustomThemeProvider>
-          {/* <>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {/* <>
             {loading && (
               <div style={{ position: "absolute", top: "45%", left: "50%" }}>
                 <CircularProgress />
               </div>
             )}
           </> */}
-          <LoadingProvider>
-            <SnackbarProvider {...snackbarDetails}>
-              <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-                <>{children}</>
-              </AppRouterCacheProvider>
-            </SnackbarProvider>
-          </LoadingProvider>
+            <LoadingProvider>
+              <SnackbarProvider {...snackbarDetails}>
+                <AppRouterCacheProvider options={{ enableCssLayer: true }}>
+                  <>{children}</>
+                </AppRouterCacheProvider>
+              </SnackbarProvider>
+            </LoadingProvider>
+          </LocalizationProvider>
         </CustomThemeProvider>
       </body>
     </html>

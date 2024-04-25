@@ -2,15 +2,28 @@ import { createTheme } from "@mui/material/styles";
 
 const darkTheme = createTheme({
   palette: {
-    type: 'dark',
+    type: "dark",
     primary: {
-      main: '#022F40', // Primary color for dark theme
+      main: "#022F40", // Primary color for dark theme
     },
     secondary: {
-      main: '#315972', // Example secondary color for dark theme
+      main: "#315972", // Example secondary color for dark theme
     },
   },
   components: {
+    MuiDatePicker: {
+      defaultProps: {
+        slotProps: {
+          inputAdornment: {
+            position: "start",
+          },
+          openPickerButton: {
+            color: "success",
+          },
+        },
+      },
+    },
+
     MuiIconButton: {
       styleOverrides: {
         root: {
@@ -44,9 +57,9 @@ const darkTheme = createTheme({
   // custome theme ---
   custom: {
     sidebar: {
-      sidebarTextColor: "#fff"
-    }
-  }
+      sidebarTextColor: "#fff",
+    },
+  },
 });
 
 export default darkTheme;
