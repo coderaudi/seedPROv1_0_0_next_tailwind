@@ -17,7 +17,7 @@ import {
 } from "@lib/layout";
 import { DatePicker } from "@mui/x-date-pickers";
 
-import { SettingsIcon, PersonAdd, ShoppingCart } from "@lib/icons";
+import { SettingsIcon, ShoppingBag, ShoppingCart } from "@lib/icons";
 import dayjs from "dayjs";
 
 const tilesData = [
@@ -36,13 +36,13 @@ const tilesData = [
   {
     title: "Active Users",
     description: "Number of active users",
-    icon: <SettingsIcon fontSize="large" />,
+    icon: <ShoppingBag fontSize="large" />,
     value: "5,678",
   },
   {
     title: "Pending Orders",
     description: "Number of pending orders",
-    icon: <SettingsIcon fontSize="large" />,
+    icon: <ShoppingCart fontSize="large" />,
     value: "123",
   },
 ];
