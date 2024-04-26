@@ -73,7 +73,7 @@ const ContactUsPage = () => {
           <CustomButton
             title={"Refresh"}
             onClick={() => {
-              showLoading();
+              showLoading("", "settings");
             }}
           />
         );

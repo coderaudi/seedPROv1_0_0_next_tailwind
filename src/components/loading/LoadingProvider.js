@@ -1,30 +1,32 @@
 import React, { createContext, useContext, useState } from "react";
-import { CircularProgress, Typography, Backdrop, Box } from "@lib";
-import { projectDetails } from "@lib/config/project";
-import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty"; // Import the icon
-import { Fab } from "@mui/material";
+import { Backdrop, Box } from "@lib";
 
+import { CustomLoading } from "@lib/layout";
 const LoadingContext = createContext();
 
 const useLoading = () => useContext(LoadingContext);
 
 const LoadingProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [loadingIcon, setLoadingIcon] = useState("hourglass");
   const [loadingMessage, setLoadingMessage] = useState("");
 
-  const setLoadingState = (isLoading, msg) => {
+  const setLoadingState = (isLoading, msg, loadingIcon) => {
     setLoading(isLoading);
     setLoadingMessage(msg || "");
+    setLoadingIcon(loadingIcon || "hourglass");
   };
 
-  const showLoading = (msg) => {
+  const showLoading = (msg, loadingIcon) => {
     setLoading(true);
     setLoadingMessage(msg || "");
+    setLoadingIcon(loadingIcon || "hourglass");
   };
 
   const hideLoading = () => {
     setLoading(false);
     setLoadingMessage("");
+    setLoadingIcon("hourglass");
   };
 
   return (
@@ -40,22 +42,11 @@ const LoadingProvider = ({ children }) => {
         // onClick={hideLoading}
       >
         <Box sx={{ m: 1, position: "relative" }}>
-          <Fab
-            className="animate-spin transition delay-1000"
-            aria-label="save"
-            color=""
-            // sx={buttonSx}
-            // onClick={handleButtonClick}
-          >
-            <HourglassEmptyIcon color="primary" fontSize="large" />{" "}
-          </Fab>
-          <Typography
-            variant="h6"
-            color="text.primary"
-            className="mt-5 animate-pulse" // Adjust the margin top
-          >
-            {loadingMessage && loadingMessage}
-          </Typography>
+          <CustomLoading
+            loading={true}
+            loadingIcon={loadingIcon}
+            loadingMessage={loadingMessage}
+          />
         </Box>
       </Backdrop>
     </LoadingContext.Provider>
