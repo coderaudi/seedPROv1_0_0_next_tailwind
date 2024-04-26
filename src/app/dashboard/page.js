@@ -13,10 +13,39 @@ import {
   PageContainer,
   CustomizedDialogs,
   useLoading,
+  CustomTile,
 } from "@lib/layout";
 import { DatePicker } from "@mui/x-date-pickers";
 
+import { SettingsIcon, PersonAdd, ShoppingCart } from "@lib/icons";
 import dayjs from "dayjs";
+
+const tilesData = [
+  {
+    title: "Active Users",
+    description: "Number of active users",
+    icon: <SettingsIcon fontSize="large" />,
+    value: "5,678",
+  },
+  {
+    title: "Active Users",
+    description: "Number of active users",
+    icon: <SettingsIcon fontSize="large" />,
+    value: "5,678",
+  },
+  {
+    title: "Active Users",
+    description: "Number of active users",
+    icon: <SettingsIcon fontSize="large" />,
+    value: "5,678",
+  },
+  {
+    title: "Pending Orders",
+    description: "Number of pending orders",
+    icon: <SettingsIcon fontSize="large" />,
+    value: "123",
+  },
+];
 
 // Define Yup schema for validation
 const validationRules = {
@@ -62,12 +91,8 @@ const ContactUsPage = () => {
 
   return (
     <DashboardLayout
-      pageName={"Dashboard Page1"}
-      breadcrumbItems={[
-        { text: "Home", href: "/" },
-        { text: "About", href: "/about" },
-        { text: "Product Details" },
-      ]}
+      pageName={"Dashboard"}
+      breadcrumbItems={[{ text: "Home", href: "/" }, { text: "Dashboard" }]}
       layoutCustomContent={() => {
         return (
           <CustomButton
@@ -80,52 +105,19 @@ const ContactUsPage = () => {
       }}
     >
       <PageContainer>
-        <div>
-          <div className="max-w-md">
-            <CustomDatePicker
-              title="MY Date Picker"
-              width="120px"
-              height="120px"
+        <div className="flex space-x-2">
+          {tilesData.map((tile, index) => (
+            <CustomTile
+              key={index}
+              title={tile.title}
+              description={tile.description}
+              icon={tile.icon}
+              value={tile.value}
             />
-            {/* Name */}
-            <InputField
-              size="small"
-              color="primary"
-              id="name"
-              label="Name"
-              variant="outlined"
-              {...register("name")}
-              margin="normal"
-              errorMessage={errors.name && errors.name.message}
-            />
-            {/* Query */}
-            <InputField
-              size="small"
-              color="primary"
-              id="query"
-              label="Query"
-              variant="outlined"
-              {...register("query")}
-              margin="normal"
-              errorMessage={errors.query && errors.query.message}
-            />
-            {/* Description */}
-
-            <InputField
-              size="small"
-              color="primary"
-              id="description"
-              label="Description"
-              variant="outlined"
-              {...register("description")}
-              multiline
-              rows={4}
-              margin="normal"
-              errorMessage={errors.description && errors.description.message}
-            />
-          </div>
+          ))}
         </div>
 
+        <div className="mt-10"></div>
         <CustomizedDialogs
           //  width={50} // Width in percentage
           minWidth={550} // Minimum width in pixels
@@ -134,55 +126,55 @@ const ContactUsPage = () => {
           handleDialog={setOpenDialog}
           buttonTitle="TEST POPUP"
           title={"Custom Dialog Title"}
-          contentJSx={() => (
-            <div>
-              <div className="max-w-md">
-                <CustomDatePicker
-                  title="MY Date Picker"
-                  width="120px"
-                  height="120px"
-                />
-                {/* Name */}
-                <InputField
-                  size="small"
-                  color="primary"
-                  id="name"
-                  label="Name"
-                  variant="outlined"
-                  {...register("name")}
-                  margin="normal"
-                  errorMessage={errors.name && errors.name.message}
-                />
-                {/* Query */}
-                <InputField
-                  size="small"
-                  color="primary"
-                  id="query"
-                  label="Query"
-                  variant="outlined"
-                  {...register("query")}
-                  margin="normal"
-                  errorMessage={errors.query && errors.query.message}
-                />
-                {/* Description */}
+          // contentJSx={() => (
+          //   <div>
+          //     <div className="max-w-md">
+          //       <CustomDatePicker
+          //         title="MY Date Picker"
+          //         width="120px"
+          //         height="120px"
+          //       />
+          //       {/* Name */}
+          //       <InputField
+          //         size="small"
+          //         color="primary"
+          //         id="name"
+          //         label="Name"
+          //         variant="outlined"
+          //         {...register("name")}
+          //         margin="normal"
+          //         errorMessage={errors.name && errors.name.message}
+          //       />
+          //       {/* Query */}
+          //       <InputField
+          //         size="small"
+          //         color="primary"
+          //         id="query"
+          //         label="Query"
+          //         variant="outlined"
+          //         {...register("query")}
+          //         margin="normal"
+          //         errorMessage={errors.query && errors.query.message}
+          //       />
+          //       {/* Description */}
 
-                <InputField
-                  size="small"
-                  color="primary"
-                  id="description"
-                  label="Description"
-                  variant="outlined"
-                  {...register("description")}
-                  multiline
-                  rows={4}
-                  margin="normal"
-                  errorMessage={
-                    errors.description && errors.description.message
-                  }
-                />
-              </div>
-            </div>
-          )}
+          //       <InputField
+          //         size="small"
+          //         color="primary"
+          //         id="description"
+          //         label="Description"
+          //         variant="outlined"
+          //         {...register("description")}
+          //         multiline
+          //         rows={4}
+          //         margin="normal"
+          //         errorMessage={
+          //           errors.description && errors.description.message
+          //         }
+          //       />
+          //     </div>
+          //   </div>
+          // )}
         />
       </PageContainer>
     </DashboardLayout>

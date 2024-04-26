@@ -61,7 +61,11 @@ const darkTheme = createTheme({
       sidebarTextColor: "#fff",
     },
     paper: {
-      profileDetailsBg: "#1fa9a2",
+      profileDetailsBg: "#315972",
+    },
+    tile: {
+      primary: "#315972",
+      secondary: "#022F40",
     },
   },
 });

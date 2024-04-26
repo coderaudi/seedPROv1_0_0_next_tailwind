@@ -16,6 +16,7 @@ import PageContainer from "src/components/container/pageContainer";
 import CardContainer from "src/components/container/cardContainer";
 import CustomizedDialogs from "src/components/dialog/dialog.component";
 import CustomLoading from "src/components/loading/CustomLoading.component";
+import CustomTile from "src/components/tiles/tiles.component";
 
 // other details
 const userName = "harry potter";
@@ -32,5 +33,7 @@ export {
   CardContainer,
   CustomizedDialogs,
   CustomLoading,
+  // componetns
+  CustomTile,
   userName,
 };

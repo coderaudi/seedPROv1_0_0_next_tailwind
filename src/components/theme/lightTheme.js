@@ -55,6 +55,10 @@ const lightTheme = createTheme({
     paper: {
       profileDetailsBg: "#64B9A6",
     },
+    tile: {
+      primary: "#64B9A6",
+      secondary: "#14746F",
+    },
   },
 });
 
