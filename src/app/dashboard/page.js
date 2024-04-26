@@ -8,7 +8,12 @@ import {
   InputField,
   SmallDatePicker,
 } from "@lib/components/custom";
-import { DashboardLayout, PageContainer, CustomizedDialogs } from "@lib/layout";
+import {
+  DashboardLayout,
+  PageContainer,
+  CustomizedDialogs,
+  useLoading,
+} from "@lib/layout";
 import { DatePicker } from "@mui/x-date-pickers";
 
 import dayjs from "dayjs";
@@ -27,6 +32,7 @@ const DEFAULT_FORM_VALUES = {
 };
 
 const ContactUsPage = () => {
+  const { showLoading, hideLoading } = useLoading();
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCloseDialog = () => {
@@ -63,7 +69,14 @@ const ContactUsPage = () => {
         { text: "Product Details" },
       ]}
       layoutCustomContent={() => {
-        return <CustomButton title={"Refresh"} />;
+        return (
+          <CustomButton
+            title={"Refresh"}
+            onClick={() => {
+              showLoading();
+            }}
+          />
+        );
       }}
     >
       <PageContainer>

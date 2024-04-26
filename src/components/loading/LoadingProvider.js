@@ -1,7 +1,8 @@
-// LoadingProvider.js
 import React, { createContext, useContext, useState } from "react";
-import { CircularProgress, Typography, Backdrop } from "@lib";
+import { CircularProgress, Typography, Backdrop, Box } from "@lib";
 import { projectDetails } from "@lib/config/project";
+import HourglassEmptyIcon from "@mui/icons-material/HourglassEmpty"; // Import the icon
+import { Fab } from "@mui/material";
 
 const LoadingContext = createContext();
 
@@ -38,17 +39,24 @@ const LoadingProvider = ({ children }) => {
         open={loading}
         // onClick={hideLoading}
       >
-        <div className="flex flex-col items-center justify-center pointer-events-none">
-          <CircularProgress color="primary" />
+        <Box sx={{ m: 1, position: "relative" }}>
+          <Fab
+            className="animate-spin transition delay-1000"
+            aria-label="save"
+            color=""
+            // sx={buttonSx}
+            // onClick={handleButtonClick}
+          >
+            <HourglassEmptyIcon color="primary" fontSize="large" />{" "}
+          </Fab>
           <Typography
             variant="h6"
             color="text.primary"
-            className="mt-6 animate-pulse"
+            className="mt-5 animate-pulse" // Adjust the margin top
           >
-            {(loadingMessage && loadingMessage) ||
-              projectDetails?.backdropMessage}
+            {loadingMessage && loadingMessage}
           </Typography>
-        </div>
+        </Box>
       </Backdrop>
     </LoadingContext.Provider>
   );
