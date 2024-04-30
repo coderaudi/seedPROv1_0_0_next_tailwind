@@ -10,14 +10,14 @@ const ThemeSwitchButton = () => {
   const { projectThemeLSKey } = projectDetails;
   const { currentTheme, setCurrentTheme } = useCustomTheme("light");
 
-  useEffect(() => {
-    // Check if theme is stored in local storage
-    const storedTheme = getFromLocalStorage(projectThemeLSKey);
-    if (storedTheme) {
-      // If theme is stored, set the current theme state to the stored theme
-      setCurrentTheme(storedTheme);
-    }
-  }, []); // Run this effect only once when component mounts
+  // useEffect(() => {
+  //   // Check if theme is stored in local storage
+  //   const storedTheme = getFromLocalStorage(projectThemeLSKey);
+  //   if (storedTheme) {
+  //     // If theme is stored, set the current theme state to the stored theme
+  //     setCurrentTheme(storedTheme);
+  //   }
+  // }, []); // Run this effect only once when component mounts
 
   return (
     <>
@@ -27,7 +27,7 @@ const ThemeSwitchButton = () => {
           setCurrentTheme(_updatedTheme);
           setToLocalStorage(projectThemeLSKey, _updatedTheme);
         }}
-        color="secondary"
+        // color="secondary"
         inputProps={{ "aria-label": "toggle theme" }}
         checked={currentTheme === "dark"}
         icon={<Brightness4Icon fontSize="small" />}

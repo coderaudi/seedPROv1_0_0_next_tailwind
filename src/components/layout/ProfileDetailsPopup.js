@@ -27,7 +27,7 @@ import { getCookie, removeCookie } from "@lib/utils";
 import { useTheme } from "@lib/layout";
 const ProfilePicture = ({}) => {
   const { push } = useRouter();
-  const { image, email, username } = getCookie();
+  const _cookies = getCookie();
   const theme = useTheme();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -91,7 +91,7 @@ const ProfilePicture = ({}) => {
   return (
     <div className="p-1">
       <IconButton color="inherit" onClick={handleClick}>
-        <Avatar alt="Profile Picture" src={image} />
+        <Avatar alt="Profile Picture" src={_cookies?.image} />
       </IconButton>
 
       <Popover
@@ -115,12 +115,12 @@ const ProfilePicture = ({}) => {
         >
           <div className="flex p-3">
             <div className="w-1/3 pr-2">
-              <Avatar alt="Profile Picture" src={image} />
+              <Avatar alt="Profile Picture" src={_cookies?.image} />
             </div>
 
             <div className="w-4/7">
-              <div className="text-lg font-semibold">{username}</div>
-              <div className="text-sm ">{email}</div>
+              <div className="text-lg font-semibold">{_cookies?.sername}</div>
+              <div className="text-sm ">{_cookies?.email}</div>
             </div>
           </div>
           <Divider />

@@ -14,6 +14,8 @@ import {
   CustomizedDialogs,
   useLoading,
   CustomTile,
+  useAuth,
+  CardContainer,
 } from "@lib/layout";
 import { DatePicker } from "@mui/x-date-pickers";
 
@@ -60,7 +62,7 @@ const DEFAULT_FORM_VALUES = {
   description: "", // Set default value for description field
 };
 
-const ContactUsPage = () => {
+const DashboardPage = () => {
   const { showLoading, hideLoading } = useLoading();
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -176,9 +178,11 @@ const ContactUsPage = () => {
           //   </div>
           // )}
         />
+
+        <CardContainer>CardContainer CardContainer CardContainer</CardContainer>
       </PageContainer>
     </DashboardLayout>
   );
 };
 
-export default ContactUsPage;
+export default useAuth(DashboardPage);
