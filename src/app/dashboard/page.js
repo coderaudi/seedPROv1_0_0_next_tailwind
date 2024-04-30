@@ -27,16 +27,16 @@ const tilesData = [
     title: "Active Users",
     description: "Number of active users",
     icon: <SettingsIcon fontSize="large" />,
-    value: "5,678",
+    value: "3,678",
   },
   {
-    title: "Active Users",
+    title: "Total Users",
     description: "Number of active users",
     icon: <SettingsIcon fontSize="large" />,
-    value: "5,678",
+    value: "5,348",
   },
   {
-    title: "Active Users",
+    title: "Total Orders",
     description: "Number of active users",
     icon: <ShoppingBag fontSize="large" />,
     value: "5,678",
@@ -45,7 +45,7 @@ const tilesData = [
     title: "Pending Orders",
     description: "Number of pending orders",
     icon: <ShoppingCart fontSize="large" />,
-    value: "123",
+    value: "1034",
   },
 ];
 
@@ -126,14 +126,14 @@ const DashboardPage = () => {
           maxWidth={100} // Maximum width in pixels
           openDialog={openDialog}
           handleDialog={setOpenDialog}
-          buttonTitle="TEST POPUP"
-          title={"Custom Dialog Title"}
+          buttonTitle="Active User Details"
+          title={"User Details: John Doe"}
           contentJSx={() => (
             <div>
-              <h6>Custom Dialog Title</h6>
-              <h6>Custom Dialog Title</h6>
-              <h6>Custom Dialog Title</h6>
-              <h6>Custom Dialog Title</h6>
+              <h3>User Details</h3>
+              <p>Name: John Doe</p>
+              <p>Email: john.doe@example.com</p>
+              <p>Location: New York, USA</p>
             </div>
           )}
         />
