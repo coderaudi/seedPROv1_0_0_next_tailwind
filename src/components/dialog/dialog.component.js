@@ -1,27 +1,30 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
+import React from "react";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Typography from "@mui/material/Typography";
 
-import { CustomButton } from '@lib/components/custom'
+import { CustomButton } from "@lib/components/custom";
+
 const BootstrapDialog = styled(Dialog, {
-  shouldForwardProp: (prop) => prop !== 'width' && prop !== 'minWidth' && prop !== 'maxWidth',
+  shouldForwardProp: (prop) =>
+    prop !== "width" && prop !== "minWidth" && prop !== "maxWidth",
 })(({ theme, width, minWidth, maxWidth }) => ({
-  '& .MuiDialog-paper': {
+  "& .MuiDialog-paper": {
     width: `${width}%`,
-    minWidth: minWidth ? `${minWidth}px` : 'none',
-    maxWidth: maxWidth ? `${maxWidth}px` : 'none',
+    minWidth: minWidth ? `${minWidth}px` : "none",
+    maxWidth: maxWidth ? `${maxWidth}px` : "none",
+    boxShadow: `0px 0px 20px 0px ${theme.palette.secondary.main}`,
   },
-  '& .MuiDialogContent-root': {
+  "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
-  '& .MuiDialogActions-root': {
+  "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
 }));
@@ -49,7 +52,9 @@ const CustomizedDialogs = ({
     <React.Fragment>
       <CustomButton
         title={buttonTitle}
-        variant="outlined" onClick={handleOpen} />
+        variant="outlined"
+        onClick={handleOpen}
+      />
 
       <BootstrapDialog
         onClose={handleClose}
@@ -65,7 +70,7 @@ const CustomizedDialogs = ({
             aria-label="close"
             onClick={handleClose}
             sx={{
-              position: 'absolute',
+              position: "absolute",
               right: 8,
               top: 8,
               color: (theme) => theme.palette.grey[500],
@@ -74,10 +79,7 @@ const CustomizedDialogs = ({
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent dividers>
-          {contentJSx && contentJSx()}
-        </DialogContent>
-
+        <DialogContent dividers>{contentJSx && contentJSx()}</DialogContent>
       </BootstrapDialog>
     </React.Fragment>
   );

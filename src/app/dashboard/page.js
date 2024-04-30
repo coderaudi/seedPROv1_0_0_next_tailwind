@@ -128,58 +128,15 @@ const DashboardPage = () => {
           handleDialog={setOpenDialog}
           buttonTitle="TEST POPUP"
           title={"Custom Dialog Title"}
-          // contentJSx={() => (
-          //   <div>
-          //     <div className="max-w-md">
-          //       <CustomDatePicker
-          //         title="MY Date Picker"
-          //         width="120px"
-          //         height="120px"
-          //       />
-          //       {/* Name */}
-          //       <InputField
-          //         size="small"
-          //         color="primary"
-          //         id="name"
-          //         label="Name"
-          //         variant="outlined"
-          //         {...register("name")}
-          //         margin="normal"
-          //         errorMessage={errors.name && errors.name.message}
-          //       />
-          //       {/* Query */}
-          //       <InputField
-          //         size="small"
-          //         color="primary"
-          //         id="query"
-          //         label="Query"
-          //         variant="outlined"
-          //         {...register("query")}
-          //         margin="normal"
-          //         errorMessage={errors.query && errors.query.message}
-          //       />
-          //       {/* Description */}
-
-          //       <InputField
-          //         size="small"
-          //         color="primary"
-          //         id="description"
-          //         label="Description"
-          //         variant="outlined"
-          //         {...register("description")}
-          //         multiline
-          //         rows={4}
-          //         margin="normal"
-          //         errorMessage={
-          //           errors.description && errors.description.message
-          //         }
-          //       />
-          //     </div>
-          //   </div>
-          // )}
+          contentJSx={() => (
+            <div>
+              <h6>Custom Dialog Title</h6>
+              <h6>Custom Dialog Title</h6>
+              <h6>Custom Dialog Title</h6>
+              <h6>Custom Dialog Title</h6>
+            </div>
+          )}
         />
-
-        <CardContainer>CardContainer CardContainer CardContainer</CardContainer>
       </PageContainer>
     </DashboardLayout>
   );
