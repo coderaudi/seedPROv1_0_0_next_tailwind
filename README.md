@@ -16,21 +16,21 @@ This is a streamlined admin portal equipped with a sidebar and various pages/com
 
 Instructions on how to install your project.
 
-npm run dev
+## npm run dev
 
-# or
+or
 
-yarn dev
+## yarn dev
 
-# or
+or
 
-pnpm dev
+## pnpm dev
 
-# or
+or
 
-bun dev
+## run dev
 
-## Usage
+### Usage
 
 Access the project by navigating to localhost:3000 in your web browser and follow the provided instructions for seamless usage.
 
