@@ -1,14 +1,17 @@
-# QUICK START DASHBOARD ADMIN TEMPLAT
+# Quick Start: Dashboard Admin Template
 
 ## TECH STACK
 
-### NEXT JS
-
-### REACT JS
-
-### TAILWIND CSS
-
-### MATERIAL UI
+```bash
+NEXT JS
+REACT JS
+Tailwind CSS
+Material-UI
+Axios
+React Hook Form
+Styled-components
+Yup
+```
 
 This is a streamlined admin portal equipped with a sidebar and various pages/components. It includes token and REST API setup, along with theme customization and notification functionalities. Additionally, it features cookie management for seamless navigation. This setup is designed to accelerate the implementation of business logic, bypassing the need for a rudimentary configuration
 
@@ -16,23 +19,16 @@ This is a streamlined admin portal equipped with a sidebar and various pages/com
 
 Instructions on how to install your project.
 
-## npm run dev
-
-or
-
-## yarn dev
-
-or
-
-## pnpm dev
-
-or
-
-## run dev
+```bash
+clone dir
+install npm
+npm run dev
+visit http://localhost:3000/
+```
 
 ### Usage
 
-Access the project by navigating to localhost:3000 in your web browser and follow the provided instructions for seamless usage.
+Access the project by navigating to http://localhost:3000/ in your web browser and follow the provided instructions for seamless usage.
 
 ## Screenshots
 
