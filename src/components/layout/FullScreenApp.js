@@ -27,9 +27,9 @@ const FullScreenAPP = () => {
       aria-label="toggle fullscreen"
     >
       {isFullScreen ? (
-        <FullscreenExit fontSize="large" />
+        <FullscreenExit fontSize="large" color="text.primary" />
       ) : (
-        <Fullscreen fontSize="large" />
+        <Fullscreen fontSize="large" color="text.primary" />
       )}
     </span>
   );

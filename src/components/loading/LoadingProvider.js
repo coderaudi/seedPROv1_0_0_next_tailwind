@@ -1,29 +1,32 @@
-// LoadingProvider.js
 import React, { createContext, useContext, useState } from "react";
-import { CircularProgress, Typography, Backdrop } from "@lib";
-import { projectDetails } from "@lib/config/project";
+import { Backdrop, Box } from "@lib";
 
+import { CustomLoading } from "@lib/layout";
 const LoadingContext = createContext();
 
 const useLoading = () => useContext(LoadingContext);
 
 const LoadingProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [loadingIcon, setLoadingIcon] = useState("hourglass");
   const [loadingMessage, setLoadingMessage] = useState("");
 
-  const setLoadingState = (isLoading, msg) => {
+  const setLoadingState = (isLoading, msg, loadingIcon) => {
     setLoading(isLoading);
     setLoadingMessage(msg || "");
+    setLoadingIcon(loadingIcon || "hourglass");
   };
 
-  const showLoading = (msg) => {
+  const showLoading = (msg, loadingIcon) => {
     setLoading(true);
     setLoadingMessage(msg || "");
+    setLoadingIcon(loadingIcon || "hourglass");
   };
 
   const hideLoading = () => {
     setLoading(false);
     setLoadingMessage("");
+    setLoadingIcon("hourglass");
   };
 
   return (
@@ -38,17 +41,13 @@ const LoadingProvider = ({ children }) => {
         open={loading}
         // onClick={hideLoading}
       >
-        <div className="flex flex-col items-center justify-center pointer-events-none">
-          <CircularProgress color="primary" />
-          <Typography
-            variant="h6"
-            color="text.primary"
-            className="mt-6 animate-pulse"
-          >
-            {(loadingMessage && loadingMessage) ||
-              projectDetails?.backdropMessage}
-          </Typography>
-        </div>
+        <Box sx={{ m: 1, position: "relative" }}>
+          <CustomLoading
+            loading={true}
+            loadingIcon={loadingIcon}
+            loadingMessage={loadingMessage}
+          />
+        </Box>
       </Backdrop>
     </LoadingContext.Provider>
   );

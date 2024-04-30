@@ -21,7 +21,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CampaignIcon from "@mui/icons-material/Campaign";
-
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import {
   Logout,
   Settings,
@@ -32,10 +32,15 @@ import {
   LinkSharp,
   AccountBox,
   ManageAccounts,
-  NavigateNextIcon
+  NavigateNextIcon,
+  ShoppingBag,
+  ShoppingCart,
 } from "@mui/icons-material";
 
 export {
+  ShoppingBag,
+  ShoppingCart,
+  CalendarMonthIcon,
   NavigateNextIcon,
   IconButton,
   MenuIcon,

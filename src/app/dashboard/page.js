@@ -1,13 +1,53 @@
-'use client'
-import React, { useState } from 'react';
-import { useForm, yup, generateYupResolver } from '@lib/form';
+"use client";
+import React, { useState } from "react";
+import { useForm, yup, generateYupResolver } from "@lib/form";
 import Typography from "@mui/material/Typography";
-import { CustomButton, InputField } from "@lib/components/custom";
-import { DashboardLayout, PageContainer, CustomizedDialogs } from "@lib/layout";
-import { DatePicker } from '@mui/x-date-pickers';
+import {
+  CustomButton,
+  CustomDatePicker,
+  InputField,
+  SmallDatePicker,
+} from "@lib/components/custom";
+import {
+  DashboardLayout,
+  PageContainer,
+  CustomizedDialogs,
+  useLoading,
+  CustomTile,
+  useAuth,
+  CardContainer,
+} from "@lib/layout";
+import { DatePicker } from "@mui/x-date-pickers";
 
+import { SettingsIcon, ShoppingBag, ShoppingCart } from "@lib/icons";
+import dayjs from "dayjs";
 
-
+const tilesData = [
+  {
+    title: "Active Users",
+    description: "Number of active users",
+    icon: <SettingsIcon fontSize="large" />,
+    value: "3,678",
+  },
+  {
+    title: "Total Users",
+    description: "Number of active users",
+    icon: <SettingsIcon fontSize="large" />,
+    value: "5,348",
+  },
+  {
+    title: "Total Orders",
+    description: "Number of active users",
+    icon: <ShoppingBag fontSize="large" />,
+    value: "5,678",
+  },
+  {
+    title: "Pending Orders",
+    description: "Number of pending orders",
+    icon: <ShoppingCart fontSize="large" />,
+    value: "1034",
+  },
+];
 
 // Define Yup schema for validation
 const validationRules = {
@@ -17,22 +57,27 @@ const validationRules = {
 };
 
 const DEFAULT_FORM_VALUES = {
-  name: "Test user", // Set default value for name field
+  name: "Test user123", // Set default value for name field
   query: "", // Set default value for query field
-  description: "" // Set default value for description field
+  description: "", // Set default value for description field
 };
 
-const ContactUsPage = () => {
-
+const DashboardPage = () => {
+  const { showLoading, hideLoading } = useLoading();
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
     resolver: generateYupResolver(validationRules),
-    defaultValues: DEFAULT_FORM_VALUES
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
   const onSubmit = (data) => {
@@ -48,78 +93,47 @@ const ContactUsPage = () => {
 
   return (
     <DashboardLayout
-      pageName={'Dashboard Page1'}
-      breadcrumbItems={[
-        { text: 'Home', href: '/' },
-        { text: 'About', href: '/about' },
-        { text: 'Product Details' },
-      ]}
+      pageName={"Dashboard"}
+      breadcrumbItems={[{ text: "Home", href: "/" }, { text: "Dashboard" }]}
       layoutCustomContent={() => {
         return (
           <CustomButton
             title={"Refresh"}
+            onClick={() => {
+              showLoading("", "settings");
+            }}
           />
         );
       }}
     >
       <PageContainer>
+        <div className="flex space-x-2">
+          {tilesData.map((tile, index) => (
+            <CustomTile
+              key={index}
+              title={tile.title}
+              description={tile.description}
+              icon={tile.icon}
+              value={tile.value}
+            />
+          ))}
+        </div>
 
-      <DatePicker 
-      />
-
-
+        <div className="mt-10"></div>
         <CustomizedDialogs
           //  width={50} // Width in percentage
           minWidth={550} // Minimum width in pixels
           maxWidth={100} // Maximum width in pixels
           openDialog={openDialog}
           handleDialog={setOpenDialog}
-          buttonTitle='TEST POPUP'
-          title={"Custom Dialog Title"}
+          buttonTitle="Active User Details"
+          title={"User Details: John Doe"}
           contentJSx={() => (
             <div>
-              <Typography variant="body1">Dialog content goes here.</Typography>
-              <div className="max-w-md">
-                {/* Name */}
-                <InputField
-                  size="small"
-                  color="primary"
-                  focused
-                  id="name"
-                  label="Name"
-                  variant="outlined"
-                  {...register("name")}
-                  margin="normal"
-                  errorMessage={errors.name && errors.name.message}
-                />
-                {/* Query */}
-                <InputField
-                  size="small"
-                  color="primary"
-                  focused
-                  id="query"
-                  label="Query"
-                  variant="outlined"
-                  {...register("query")}
-                  margin="normal"
-                  errorMessage={errors.query && errors.query.message}
-                />
-                {/* Description */}
-
-                <InputField
-                  size="small"
-                  color="primary"
-                  focused
-                  id="description"
-                  label="Description"
-                  variant="outlined"
-                  {...register("description")}
-                  multiline
-                  rows={4}
-                  margin="normal"
-                  errorMessage={errors.description && errors.description.message}
-                />
-              </div>
+              <h3>User Details</h3>
+              <p>Name: John Doe</p>
+              <p>Email: john.doe@example.com</p>
+              <p>Location: New York, USA</p>
             </div>
           )}
         />
@@ -128,4 +142,4 @@ const ContactUsPage = () => {
   );
 };
 
-export default ContactUsPage;
+export default useAuth(DashboardPage);
