@@ -1,65 +1,66 @@
-// useAuth.js
-'use client'
+'use client';
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation"; // Changed import statement
-import { enqueueSnackbar } from "notistack"; // Assuming correct usage
-import { ACCESS_DENIED } from "@lib/messages";
-import { checkPathIsAllowed } from "src/lib/projectSetup/sidebarMenuList";
-import { CircularProgress } from "@lib";
-import { getCookie } from "@lib/utils";
-
-const userPermissions = ["dashboard", "admin-about"];
+import { usePathname, useRouter } from "next/navigation";
+import { CircularProgress } from "@lib"; // Assuming you have a CircularProgress component
+import { getCookie } from "@lib/utils"; // Utility function to retrieve cookies
+import { checkPathIsAllowed } from "src/lib/projectSetup/sidebarMenuList"; // Utility to check permissions
 
 const useAuth = (WrappedComponent) => {
   const AuthComponent = (props) => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const router = useRouter(); // Added useRouter hook
+    const router = useRouter();
     const currentPath = usePathname(); // Get current path using useRouter
 
+    // Retrieve cookies (including user data and permissions)
     const _cookies = getCookie();
 
     useEffect(() => {
       const fetchAuthStatus = async () => {
         try {
-          // Fetch user permissions or any other authentication check
+          if (!_cookies || !_cookies.currentUserPermission) {
+            // If no cookies or permissions, force redirect to Access Denied
+            setIsAuthenticated(false);
+            return;
+          }
+
+          const userPermissions = _cookies.currentUserPermission; // Get permissions from cookies
+          console.log("User Permissions from Cookies:", userPermissions);
+
+          // Check if the current path is allowed based on the user's permissions
           const isAuthed = checkPathIsAllowed(currentPath, userPermissions);
-          setIsAuthenticated(isAuthed);
+          console.log("Auth Check Result:", isAuthed);
+
+          setIsAuthenticated(isAuthed); // Set authentication status based on the check
         } catch (error) {
           console.error("Authentication error:", error);
-          // Handle error appropriately, e.g., redirect to an error page
+          setIsAuthenticated(false);
         } finally {
-          setLoading(false);
+          setLoading(false); // Set loading to false after the check is complete
         }
       };
 
       fetchAuthStatus();
-    }, [currentPath]); // Include router.pathname in the dependency array
-
+    }, [currentPath, _cookies]); // Re-run when cookies or path change
+    
     if (loading) {
+      // Show a loading spinner while checking authentication
       return (
-        <div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "80vh",
-            }}
-          >
-            <CircularProgress />
-          </div>
+        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "80vh" }}>
+          <CircularProgress />
         </div>
       );
     }
 
+    // Redirect to Access Denied page if no cookies or insufficient permissions
     if (!_cookies || !isAuthenticated) {
-      // Redirect to login or error page using router.push
+      console.log("Redirecting to Access Denied...");
       router.push("/help/AccessDenied");
-      return null; // Need to return something to avoid errors
-    } else {
-      return <WrappedComponent {...props} />;
+      return null; // Return null to prevent rendering the wrapped component
     }
+
+    // If authenticated, render the wrapped component
+    return <WrappedComponent {...props} />;
   };
 
   return AuthComponent;

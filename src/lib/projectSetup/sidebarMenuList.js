@@ -10,43 +10,45 @@ import {
 } from "@lib/icons";
 
 const sidebarMenuList = [
-  {
-    text: "Login",
-    icon: <DashboardIcon />,
-    link: "/login",
-    checkPermissions: true,
-    permissions: ["admin"],
-  },
-  {
-    text: "About",
-    icon: <DashboardIcon />,
-    link: "/about",
-    checkPermissions: true,
-    permissions: ["admin-about"],
-  },
+  // {
+  //   text: "Login",
+  //   icon: <DashboardIcon />,
+  //   link: "/login",
+  //   checkPermissions: false,
+  //   permissions: ["user"],
+  // },
+ 
   {
     text: "Dashboard",
     icon: <DashboardIcon />,
     link: "/dashboard",
     permissions: ["dashboard"],
   },
-
+  {
+    text: "About",
+    icon: <DashboardIcon />,
+    link: "/about",
+    checkPermissions: true,
+    permissions: ["about"],
+  },
   {
     text: "Users",
     icon: <PeopleIcon />,
-    permissions: ["user", "manage-users"],
+    permissions: ["user", "manageUsers"],
     subMenu: [
       {
         text: "User List",
         icon: <ListIcon />,
         link: "/user/userlist",
-        permissions: ["user-list"],
+        checkPermissions: true,
+        permissions: ["userList"],
       },
       {
         text: "Manage Users",
         icon: <ManageUsersIcon />,
-        link: "/manage-users",
-        permissions: ["manage-users"],
+        link: "/user/manageUsers",
+        checkPermissions: true,
+        permissions: ["manageUsers"],
       },
     ],
   },

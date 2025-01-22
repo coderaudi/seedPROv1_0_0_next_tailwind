@@ -57,7 +57,8 @@ export const setCookie = (data, options = {}) => {
 // Utility function to get data from a cookie
 export const getCookie = () => {
   const cookieData = Cookies.get(clientCookiesKey);
-  return cookieData ? JSON.parse(cookieData)?.data : null;
+  console.log("YOU HAVE COOKIES", JSON.stringify(cookieData))
+  return cookieData ? JSON.parse(cookieData) : null;
 };
 
 // Utility function to remove a cookie

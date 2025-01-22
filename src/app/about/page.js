@@ -2,10 +2,11 @@
 import React, { useEffect } from "react";
 import { Box, Paper, Typography } from "@lib";
 import { projectDetails } from "@lib/config/project";
-import { useSnackbar, useLoading, useAuth } from "@lib/layout";
+import { useSnackbar, useLoading, useAuth, DashboardLayout } from "@lib/layout";
 
 const AboutPage = () => {
   return (
+    <DashboardLayout>
     <div className="p-10">
       <Paper elevation={3} className="p-10">
         <div className="flex justify-center items-center h-full">
@@ -28,21 +29,12 @@ const AboutPage = () => {
             >
               {projectDetails.copyrightMessage}
             </Typography>
-            <Box
-              sx={{
-                width: 100,
-                height: 100,
-                borderRadius: 1,
-                bgcolor: 'primary.main',
-                '&:hover': {
-                  bgcolor: 'primary.dark',
-                },
-              }}
-            />
+           
           </div>
         </div>
       </Paper>
     </div>
+    </DashboardLayout>
   );
 };
 

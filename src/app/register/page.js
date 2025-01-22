@@ -2,9 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { CustomButton } from "@lib/components/custom";
 import { TextField } from "@lib";
-import { postData } from "@lib/rest";
 import { CardContainer, PageContainer, useSnackbar } from "@lib/layout";
 import { useRouter } from "next/navigation";
+
+// Define a constant for seed users list
+const seedPro_usersList = [
+  { username: "admin", password: "admin123", email: "admin@example.com" },
+  { username: "user1", password: "user123", email: "user1@example.com" },
+  { username: "user2", password: "user456", email: "user2@example.com" },
+];
 
 const RegisterPage = () => {
   const { push } = useRouter();
@@ -12,11 +18,12 @@ const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (isLoggedIn === "true") {
-      push("/login"); // Redirect if already logged in
+    // Initialize the users list in localStorage if it's not already set
+    if (!localStorage.getItem("seedPro_usersList")) {
+      localStorage.setItem("seedPro_usersList", JSON.stringify(seedPro_usersList));
     }
   }, [push]);
 
@@ -26,21 +33,44 @@ const RegisterPage = () => {
         throw new Error("Passwords do not match");
       }
 
-      const response = await postData("https://dummyjson.com/auth/register", {
-        username,
-        password,
-      });
-      console.log("Registration Successful:", response);
+      if (!email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+        throw new Error("Invalid email address");
+      }
 
+      // Fetch existing users from localStorage
+      const users = JSON.parse(localStorage.getItem("seedPro_usersList")) || [];
+
+      // Check if the username or email already exists
+      const existingUser = users.find(user => user.username === username || user.email === email);
+      if (existingUser) {
+        throw new Error("Username or email already exists");
+      }
+
+      // Create a new user object
+      const newUser = { username, password, email };
+
+      // Add new user to the list of users
+      users.push(newUser);
+
+      // Save the updated users list back to localStorage
+      localStorage.setItem("seedPro_usersList", JSON.stringify(users));
+
+      // Optionally store that the user is logged in (for immediate use)
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+      // Show success notification
       enqueueSnackbar({
-        message: "REGISTRATION SUCCESS",
+        message: "Registration successful!",
         variant: "success",
       });
+
+      // Redirect to login page after registration
       push("/login");
     } catch (error) {
       console.error("Error registering:", error);
       enqueueSnackbar({
-        message: error.message || "Error registering",
+        message: error.message || "An error occurred during registration",
         variant: "error",
       });
     }
@@ -72,6 +102,17 @@ const RegisterPage = () => {
                   placeholder="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  fullWidth
+                />
+              </div>
+              <div className="mb-4">
+                <TextField
+                  id="email"
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   fullWidth
                 />
               </div>

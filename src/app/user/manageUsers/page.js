@@ -2,26 +2,53 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout, useAuth } from "@lib/layout";
 
-const UserList = () => {
+const ManageUser = () => {
   // State to store users
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state for better UX
+  const [error, setError] = useState(null); // State for error handling
 
   // Fetch users from localStorage on page load
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("seedPro_usersList")) || [];
-    setUsers(storedUsers);
+    try {
+      const storedUsers = JSON.parse(localStorage.getItem("seedPro_usersList")) || [];
+      setUsers(storedUsers);
+      setLoading(false); // Set loading to false after fetching users
+    } catch (e) {
+      setError("Failed to load users.");
+      setLoading(false); // Stop loading in case of error
+    }
   }, []);
 
   // Handle user deletion
   const handleDeleteUser = (username) => {
-    const updatedUsers = users.filter((user) => user.username !== username);
-    // Update the state and localStorage after deletion
-    setUsers(updatedUsers);
-    localStorage.setItem("seedPro_usersList", JSON.stringify(updatedUsers));
+    const confirmDelete = window.confirm(`Are you sure you want to delete user: ${username}?`);
+    if (confirmDelete) {
+      const updatedUsers = users.filter((user) => user.username !== username);
+      setUsers(updatedUsers);
+      localStorage.setItem("seedPro_usersList", JSON.stringify(updatedUsers));
+    }
   };
 
+  // Loading or error state
+  if (loading) {
+    return (
+      <DashboardLayout pageName={"Manage User"}>
+        <div className="text-center py-4">Loading...</div>
+      </DashboardLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <DashboardLayout pageName={"Manage User"}>
+        <div className="text-center py-4 text-red-600">{error}</div>
+      </DashboardLayout>
+    );
+  }
+
   return (
-    <DashboardLayout pageName={"User List"}>
+    <DashboardLayout pageName={"Manage User"}>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           <thead>
@@ -61,4 +88,4 @@ const UserList = () => {
   );
 };
 
-export default useAuth(UserList);
+export default useAuth(ManageUser);

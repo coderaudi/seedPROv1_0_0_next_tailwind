@@ -2,24 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { CustomButton } from "@lib/components/custom";
 import { TextField } from "@lib";
-import { postData } from "@lib/rest";
-import {
-  PageContainer,
-  useLoading,
-  useSnackbar,
-  CustomLoading,
-  CardContainer,
-} from "@lib/layout";
+import { CardContainer, useSnackbar, CustomLoading } from "@lib/layout";
 import { getCookie, setCookie } from "@lib/utils";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const _cookies = getCookie();
   const { push } = useRouter();
-  const { showLoading, hideLoading } = useLoading();
   const { enqueueSnackbar } = useSnackbar();
-  const [username, setUsername] = useState("kminchelle");
-  const [password, setPassword] = useState("0lelplR");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [authenticating, setAuthenticating] = useState(false);
 
@@ -41,25 +33,39 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       setAuthenticating(true);
-      showLoading();
-      const response = await postData("https://dummyjson.com/auth/login", {
-        username,
-        password,
-        expiresInMins: 30,
-      });
-      console.log("Login Successful:", response);
 
-      setCookie(response);
+      // Get the users from localStorage
+      const users = JSON.parse(localStorage.getItem("seedPro_usersList")) || [];
+
+      // Find the user with matching username and password
+      const user = users.find(
+        (user) => user.username === username && user.password === password
+      );
+
+      if (!user) {
+        throw new Error("Invalid username or password");
+      }
+
+      console.log("Login Successful:", user);
+
+      // Store the user info in cookies or localStorage
+      setCookie({
+        username: user.username,
+        currentUserPermission: ['dashboard', 'about', 'manageUsers'] // You can add more permissions based on user roles
+      });
       enqueueSnackbar({
-        message: "LOGIN SUCCESS",
+        message: "Login successful",
         variant: "success",
       });
+
+      // Redirect to the dashboard
       push("/dashboard");
-      hideLoading();
     } catch (error) {
       console.error("Error logging in:", error);
-      hideLoading();
-      push("/login");
+      enqueueSnackbar({
+        message: error.message || "An error occurred while logging in",
+        variant: "error",
+      });
     } finally {
       setAuthenticating(false);
     }
@@ -104,7 +110,11 @@ const LoginPage = () => {
                   />
                 </div>
                 <div className="text-center">
-                  <CustomButton title="Demo Login" onClick={handleLogin} />
+                  <CustomButton
+                    title={authenticating ? "Logging in..." : "Login"}
+                    onClick={handleLogin}
+                    disabled={authenticating}
+                  />
                 </div>
                 <div className="text-center mt-4">
                   <span className="text-sm text-gray-500">
