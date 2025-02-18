@@ -1,11 +1,11 @@
 import React from "react";
-import { DashboardLayout } from "@lib/layout";
+// import { DashboardLayout } from "@lib/layout";
 
 const ContactUS = () => {
   return (
-    <DashboardLayout>
+    <>
       <div className="container">
-        <div className="flex justify-center items-center  bg-white">
+        {/* <div className="flex justify-center items-center  bg-white">
           <div className="container mx-auto my-4 px-4 lg:px-20">
             <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
               <div className="flex">
@@ -100,9 +100,9 @@ const ContactUS = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 
