@@ -1,5 +1,5 @@
 "use client";
-import {  DashboardLayout, MYPieChart } from "@lib/layout";
+import {  DashboardLayout } from "@lib/layout";
 
 const MYAPP = () => {
   const data = [
@@ -12,7 +12,7 @@ const MYAPP = () => {
   return (
     <>
       <DashboardLayout>
-        <MYPieChart />
+        {/* <MYPieChart /> */}
       </DashboardLayout>
     </>
   );
