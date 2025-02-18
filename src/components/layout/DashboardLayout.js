@@ -5,8 +5,8 @@ import {
   IconButton,
   MenuIcon,
   ChevronLeftIcon,
-  ChevronRightIcon,
-  NavigateNextIcon,
+  ChevronRightIcon, 
+  NavigateNextIcon
 } from "@lib/icons";
 
 import {

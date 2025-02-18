@@ -32,7 +32,6 @@ import {
   LinkSharp,
   AccountBox,
   ManageAccounts,
-  NavigateNextIcon,
   ShoppingBag,
   ShoppingCart,
 } from "@mui/icons-material";
@@ -41,7 +40,6 @@ export {
   ShoppingBag,
   ShoppingCart,
   CalendarMonthIcon,
-  NavigateNextIcon,
   IconButton,
   MenuIcon,
   ChevronLeftIcon,

@@ -1,5 +1,5 @@
 "use client";
-import { ThemeProvider, DashboardLayout, MYPieChart } from "@lib/layout";
+import {  DashboardLayout, MYPieChart } from "@lib/layout";
 
 const MYAPP = () => {
   const data = [
@@ -10,11 +10,11 @@ const MYAPP = () => {
   ];
 
   return (
-    <ThemeProvider>
+    <>
       <DashboardLayout>
         <MYPieChart />
       </DashboardLayout>
-    </ThemeProvider>
+    </>
   );
 };
 

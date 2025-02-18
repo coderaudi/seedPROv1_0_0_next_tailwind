@@ -4,7 +4,6 @@ import { useForm, yup, generateYupResolver } from "@lib/form";
 import Typography from "@mui/material/Typography";
 import {
   CustomButton,
-  CustomDatePicker,
   InputField,
   SmallDatePicker,
 } from "@lib/components/custom";
