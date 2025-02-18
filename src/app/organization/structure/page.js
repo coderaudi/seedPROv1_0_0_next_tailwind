@@ -1,5 +1,5 @@
 'use client';
-import { MYPieChart } from '@lib/layout';
+import { DashboardLayout, MYPieChart } from '@lib/layout';
 import React, { useState } from 'react';
 
 const OrganizationalStructure = () => {
@@ -60,6 +60,9 @@ const OrganizationalStructure = () => {
   const totalEmployees = employees.length;
 
   return (
+    <>
+        <DashboardLayout>
+
     <div className="font-sans bg-gray-100 min-h-screen p-8">
       <h1 className="text-3xl font-semibold text-center mb-8">Organizational Structure</h1>
 
@@ -177,6 +180,9 @@ const OrganizationalStructure = () => {
         </div>
       </div>
     </div>
+    </DashboardLayout>
+
+    </>
   );
 };
 
