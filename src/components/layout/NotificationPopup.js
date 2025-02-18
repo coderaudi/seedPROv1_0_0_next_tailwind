@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { IconButton, Popover, ListItem, ListItemText } from "@mui/material";
 import { CampaignIcon } from "@lib/icons"; // Assuming you have a CampaignIcon
