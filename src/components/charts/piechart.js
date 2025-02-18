@@ -1,14 +1,15 @@
-import React from "react";
-import { PieChart } from "@lib";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { PieChart } from '@lib';
 
-const MYPieChart = () => {
-  const data = [
-    { value: 30, label: "Category A" },
-    { value: 20, label: "Category B" },
-    { value: 50, label: "Category C" },
-    { value: 50, label: "Category D" },
-    { value: 50, label: "Category E" },
-  ];
+const MYPieChart = ({ pieChartData }) => {
+  const [chartData, setChartData] = useState(pieChartData);
+
+  // Step 2: Update the chartData whenever pieChartData prop changes
+  useEffect(() => {
+    console.log("chartData------->", pieChartData);
+    setChartData(pieChartData); // Set new data when pieChartData changes
+  }, [pieChartData]); // Re-run this effect when pieChartData changes
 
   return (
     <div className="m-5">
@@ -17,7 +18,7 @@ const MYPieChart = () => {
         height={300}
         series={[
           {
-            data,
+            data: chartData,
             innerRadius: 30,
             outerRadius: 100,
             paddingAngle: 5,

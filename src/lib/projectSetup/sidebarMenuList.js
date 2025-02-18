@@ -55,8 +55,8 @@ const sidebarMenuList = [
   {
     text: "Organizational Structure",
     icon: <OrgStructureIcon />,
-    link: "/org-structure",
-    permissions: ["org-structure"],
+    link: "/organization/structure",
+    permissions: ["organization-admin"],
   },
   {
     text: "Settings",
