@@ -2,6 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { DashboardLayout, useAuth } from "@lib/layout";
 
+const permissionOptions = [
+  { value: "dashboard", label: "Dashboard" },
+  { value: "about", label: "About" },
+  { value: "manageUsers", label: "Manage Users" },
+  { value: "settings", label: "Settings" },
+  { value: "reports", label: "Reports" },
+  { value: "userList", label: "userList" }
+];
+
 const ManageUser = () => {
   // State to store users
   const [users, setUsers] = useState([]);
@@ -11,6 +20,7 @@ const ManageUser = () => {
   const [editingUser, setEditingUser] = useState(null); // State to track which user is being edited
   const [newEmail, setNewEmail] = useState(""); // New email value
   const [newPassword, setNewPassword] = useState(""); // New password value
+  const [newPermissions, setNewPermissions] = useState([]); // State for storing updated permissions
 
   // Fetch users from localStorage on page load
   useEffect(() => {
@@ -34,11 +44,16 @@ const ManageUser = () => {
     }
   };
 
-  // Handle user update (email/password)
+  // Handle user update (email, password, and permissions)
   const handleUpdateUser = (username) => {
     const updatedUsers = users.map((user) =>
       user.username === username
-        ? { ...user, email: newEmail || user.email, password: newPassword || user.password }
+        ? { 
+            ...user, 
+            email: newEmail || user.email, 
+            password: newPassword || user.password,
+            currentUserPermission: newPermissions.length > 0 ? newPermissions : user.currentUserPermission 
+          }
         : user
     );
     setUsers(updatedUsers);
@@ -46,6 +61,7 @@ const ManageUser = () => {
     setEditingUser(null); // Close the edit form
     setNewEmail(""); // Clear input
     setNewPassword(""); // Clear input
+    setNewPermissions([]); // Clear permissions
   };
 
   // Loading or error state
@@ -74,6 +90,7 @@ const ManageUser = () => {
               <th className="px-4 py-2 text-left">Username</th>
               <th className="px-4 py-2 text-left">Email</th>
               <th className="px-4 py-2 text-left">Password</th>
+              <th className="px-4 py-2 text-left">Permissions</th>
               <th className="px-4 py-2 text-left">Actions</th>
             </tr>
           </thead>
@@ -116,6 +133,32 @@ const ManageUser = () => {
                   </td>
                   <td className="px-4 py-2">
                     {editingUser === user.username ? (
+                      <div className="flex flex-col">
+                        <select
+                          multiple
+                          value={newPermissions.length > 0 ? newPermissions : user.currentUserPermission || []} // Default to empty array if undefined
+                          onChange={(e) => {
+                            const selectedPermissions = Array.from(e.target.selectedOptions, option => option.value);
+                            setNewPermissions(selectedPermissions);
+                          }}
+                          className="border border-gray-300 px-2 py-1 rounded"
+                        >
+                          {permissionOptions.map((option) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    ) : (
+                      // Safe check for undefined or empty `currentUserPermission`
+                      Array.isArray(user.currentUserPermission) && user.currentUserPermission.length > 0
+                        ? user.currentUserPermission.join(", ")
+                        : "No permissions assigned"
+                    )}
+                  </td>
+                  <td className="px-4 py-2">
+                    {editingUser === user.username ? (
                       <div>
                         <button
                           onClick={() => handleUpdateUser(user.username)}
@@ -149,7 +192,7 @@ const ManageUser = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center px-4 py-2">
+                <td colSpan="5" className="text-center px-4 py-2">
                   No users found.
                 </td>
               </tr>

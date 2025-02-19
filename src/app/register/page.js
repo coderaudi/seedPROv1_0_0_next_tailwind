@@ -47,7 +47,10 @@ const RegisterPage = () => {
       }
 
       // Create a new user object
-      const newUser = { username, password, email };
+      const newUser = {
+        username, password, email,
+        currentUserPermission: ['dashboard', 'about', 'manageUsers'] // You can add more permissions based on user roles
+      };
 
       // Add new user to the list of users
       users.push(newUser);

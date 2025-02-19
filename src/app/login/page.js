@@ -51,7 +51,7 @@ const LoginPage = () => {
       // Store the user info in cookies or localStorage
       setCookie({
         username: user.username,
-        currentUserPermission: ['dashboard', 'about', 'manageUsers'] // You can add more permissions based on user roles
+        currentUserPermission: user.currentUserPermission || [], // Get the permissions from the user object
       });
       enqueueSnackbar({
         message: "Login successful",
