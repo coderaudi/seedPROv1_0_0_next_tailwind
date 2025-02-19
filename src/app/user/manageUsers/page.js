@@ -1,18 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { DashboardLayout, useAuth } from "@lib/layout";
+import { getAllPermissionList } from "src/lib/projectSetup/sidebarMenuList";
 
-const permissionOptions = [
-  { value: "dashboard", label: "Dashboard" },
-  { value: "about", label: "About" },
-  { value: "manageUsers", label: "Manage Users" },
-  { value: "settings", label: "Settings" },
-  { value: "reports", label: "Reports" },
-  { value: "userList", label: "userList" }
-];
+
 
 const ManageUser = () => {
   // State to store users
+  const permissionOptions = getAllPermissionList();
+
+  // 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state for better UX
   const [error, setError] = useState(null); // State for error handling

@@ -145,4 +145,36 @@ const checkPathIsAllowed = (currentPath, userPermissions) => {
   }
 };
 
-export { sidebarMenuList, checkPathIsAllowed };
+const getAllPermissionList = () => {
+  const permissionOptions = [];
+
+  // Helper function to recursively extract permissions from menu items
+  const extractPermissions = (menuItems) => {
+    menuItems.forEach((menuItem) => {
+      // If permissions exist, push them to the permissionOptions list
+      if (menuItem.permissions) {
+        menuItem.permissions.forEach((permission) => {
+          // Check if permission is already in the list
+          if (!permissionOptions.some((option) => option.value === permission)) {
+            permissionOptions.push({
+              value: permission,
+              label: permission.charAt(0).toUpperCase() + permission.slice(1).replace(/([A-Z])/g, ' $1'),
+            });
+          }
+        });
+      }
+
+      // If the menu item has subMenu, recursively extract permissions from them
+      if (menuItem.subMenu) {
+        extractPermissions(menuItem.subMenu);
+      }
+    });
+  };
+
+  // Start extracting permissions from the sidebarMenuList directly
+  extractPermissions(sidebarMenuList);
+
+  return permissionOptions;
+};
+
+export { sidebarMenuList, checkPathIsAllowed ,getAllPermissionList };
