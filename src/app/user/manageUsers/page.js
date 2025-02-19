@@ -7,6 +7,10 @@ const ManageUser = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state for better UX
   const [error, setError] = useState(null); // State for error handling
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [editingUser, setEditingUser] = useState(null); // State to track which user is being edited
+  const [newEmail, setNewEmail] = useState(""); // New email value
+  const [newPassword, setNewPassword] = useState(""); // New password value
 
   // Fetch users from localStorage on page load
   useEffect(() => {
@@ -28,6 +32,20 @@ const ManageUser = () => {
       setUsers(updatedUsers);
       localStorage.setItem("seedPro_usersList", JSON.stringify(updatedUsers));
     }
+  };
+
+  // Handle user update (email/password)
+  const handleUpdateUser = (username) => {
+    const updatedUsers = users.map((user) =>
+      user.username === username
+        ? { ...user, email: newEmail || user.email, password: newPassword || user.password }
+        : user
+    );
+    setUsers(updatedUsers);
+    localStorage.setItem("seedPro_usersList", JSON.stringify(updatedUsers));
+    setEditingUser(null); // Close the edit form
+    setNewEmail(""); // Clear input
+    setNewPassword(""); // Clear input
   };
 
   // Loading or error state
@@ -55,6 +73,7 @@ const ManageUser = () => {
             <tr className="bg-gray-100">
               <th className="px-4 py-2 text-left">Username</th>
               <th className="px-4 py-2 text-left">Email</th>
+              <th className="px-4 py-2 text-left">Password</th>
               <th className="px-4 py-2 text-left">Actions</th>
             </tr>
           </thead>
@@ -63,11 +82,65 @@ const ManageUser = () => {
               users.map((user) => (
                 <tr key={user.username} className="border-b">
                   <td className="px-4 py-2">{user.username}</td>
-                  <td className="px-4 py-2">{user.email}</td>
                   <td className="px-4 py-2">
+                    {editingUser === user.username ? (
+                      <input
+                        type="email"
+                        value={newEmail || user.email}
+                        onChange={(e) => setNewEmail(e.target.value)}
+                        className="border border-gray-300 px-2 py-1 rounded"
+                      />
+                    ) : (
+                      user.email
+                    )}
+                  </td>
+                  <td className="px-4 py-2">
+                    {editingUser === user.username ? (
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          value={newPassword || user.password}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          className="border border-gray-300 px-2 py-1 rounded"
+                        />
+                        <button
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="text-blue-600 hover:text-blue-800"
+                        >
+                          {showPassword ? "Hide" : "Show"}
+                        </button>
+                      </div>
+                    ) : (
+                      "*****" // Masked password
+                    )}
+                  </td>
+                  <td className="px-4 py-2">
+                    {editingUser === user.username ? (
+                      <div>
+                        <button
+                          onClick={() => handleUpdateUser(user.username)}
+                          className="text-green-600 hover:text-green-800 mr-2"
+                        >
+                          Save
+                        </button>
+                        <button
+                          onClick={() => setEditingUser(null)}
+                          className="text-gray-600 hover:text-gray-800"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => setEditingUser(user.username)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        Edit
+                      </button>
+                    )}
                     <button
                       onClick={() => handleDeleteUser(user.username)}
-                      className="text-red-600 hover:text-red-800"
+                      className="text-red-600 hover:text-red-800 ml-2"
                     >
                       Delete
                     </button>
@@ -76,7 +149,7 @@ const ManageUser = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="3" className="text-center px-4 py-2">
+                <td colSpan="4" className="text-center px-4 py-2">
                   No users found.
                 </td>
               </tr>
